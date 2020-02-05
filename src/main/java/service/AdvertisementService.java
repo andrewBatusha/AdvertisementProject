@@ -13,7 +13,10 @@ public class AdvertisementService {
     }
 
     void sendForVerification(){
+    }
 
+    void viewMyAdvertisement(User user){
+        user.getAdvertisementLinkedList().forEach(System.out::println);
     }
 
 }

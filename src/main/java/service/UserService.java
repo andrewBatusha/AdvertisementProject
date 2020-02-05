@@ -1,15 +1,15 @@
 package service;
 
+import enums.Role;
 import model.User;
 
 public class UserService {
 
     void changePassword(User user){
-
     }
 
-    void changeRole(User user){
-
+    void changeRole(User user, Role role){
+        user.setRole(role);
     }
 
     void authorization(User user, String login, String password){
@@ -19,5 +19,6 @@ public class UserService {
             System.out.println("Login or password invalid");
         }
     }
-    void
+
+
 }
