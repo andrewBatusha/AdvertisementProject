@@ -1,19 +1,21 @@
 package model;
 
 import enums.Role;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.LinkedList;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     private int idUser;
-    private String mail;
-    private String password;
     private String login;
+    private String name;
+    private String surname;
+    private String email;
+    private String password;
     private Role role;
     List<Advertisement> advertisementLinkedList = new LinkedList<>();
 }

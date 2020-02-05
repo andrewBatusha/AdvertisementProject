@@ -1,10 +1,19 @@
 package service;
 
+import model.Advertisement;
 import model.User;
 
 public class AdvertisementService {
-    addAdvertisement(User user){
-        user.
+    void addAdvertisement(User user, Advertisement advertisement){
+        user.getAdvertisementLinkedList().add(advertisement);
+    }
+
+    void deleteAdvertisement(User user, Advertisement advertisement){
+        user.getAdvertisementLinkedList().remove(advertisement);
+    }
+
+    void sendForVerification(){
 
     }
+
 }

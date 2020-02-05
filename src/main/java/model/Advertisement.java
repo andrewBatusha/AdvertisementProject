@@ -2,16 +2,18 @@ package model;
 
 
 import enums.Status;
-import lombok.Getter;
-import lombok.Setter;
+import enums.Theme;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Advertisement {
     private int idAdvertisement;
     private String headline;
     private String description;
     private String mail;
+    private Theme theme;
     private String number;
     private Status status;
     private boolean visibility;
