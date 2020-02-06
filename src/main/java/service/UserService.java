@@ -1,23 +1,30 @@
 package service;
 
+import DAO.UserJdbcDao;
 import enums.Role;
 import model.User;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 public class UserService {
+    private static UserJdbcDao userJdbcDao;
 
-    void changePassword(User user){
-    }
-
-    void changeRole(User user, Role role){
-        user.setRole(role);
-    }
-
-    void authorization(User user, String login, String password){
-        if(login.equals(user.getLogin()) & password.equals(user.getPassword())){
-            System.out.println("authorization has completed succesfully");
-        }else{
-            System.out.println("Login or password invalid");
+    public void addUser(User user) throws SQLException, IOException{
+        if(!userJdbcDao.isEntityExistInDatabase(user)) {
+            userJdbcDao.insert(user);
         }
+    }
+
+    public void deleteUser(User user) throws SQLException, IOException{
+        if(userJdbcDao.isEntityExistInDatabase(user)) {
+            userJdbcDao.deleteByID(user.getIdUser());
+        }
+    }
+
+    void changeRole(User user, Role role) throws SQLException, IOException {
+        user.setRole(role);
+        userJdbcDao.update(user);
     }
 
 

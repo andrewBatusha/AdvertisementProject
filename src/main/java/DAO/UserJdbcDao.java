@@ -38,9 +38,11 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
             "WHERE id = ?;";
 
     private static final String SELECT_ALL_USERS = "SELECT * FROM  users ORDER BY id;";
+
+    private static final String SELECT_USER_BY_LOGIN = "SELECT COUNT(*) FROM users WHERE email = ? AND login = ? ;";
     // DO LATER
     private static final String SELECT_ALL_USERS_ADVERTISEMENT = "SELECT  Advertisement.id, headline, description, theme, email, phonenumber, status, visibility" +
-            " FROM coherence, advertisement " +
+            " FROM coherence, Advertisement " +
             "Where user.id = ?;";
 
     private static final String SELECT_USER_BY_ID = "SELECT firstname,lastname, email, password, role, login FROM users WHERE id = ? ";
@@ -90,6 +92,16 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
             return new User(id, firstName, lastName, email, password, role, login);
     }
 
+    public boolean isEntityExistInDatabase(User user) throws SQLException, IOException {
+        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_USER_BY_LOGIN);
+        preparedStatement.setString(1,user.getEmail());
+        preparedStatement.setString(2,user.getLogin());
+        ResultSet rs = databaseProtectedSelect(preparedStatement);
+        rs.next();
+        return rs.getInt(1) != 0;
+    }
+
+
     @Override
     public int insert(User user) throws SQLException, IOException {
         try(PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(INSERT)) {
@@ -134,9 +146,10 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
             String email = rs.getString("email");
             String phone = rs.getString("phonenumber");
             Status status = Status.valueOf(rs.getString("status"));
-            boolean visibility = rs.getBoolean("visibility");
+            boolean visibility = rs.getInt("visibility") > 0;
             usersAdvertisement.add(new Advertisement(ID, headLine,description, email, phone,theme,status, visibility));
         }
         return usersAdvertisement;
     }
+
 }
