@@ -3,19 +3,29 @@ package model;
 import enums.Role;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class User {
     private int idUser;
-    private String login;
     private String name;
     private String surname;
     private String email;
     private String password;
     private Role role;
-    List<Advertisement> advertisementLinkedList = new LinkedList<>();
+    private String login;
+    List<Advertisement> advertisementLinkedList = new ArrayList<>();
+
+    public User(int idUser, String name, String surname, String email, String password, Role role, String login) {
+        this.idUser = idUser;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.login = login;
+    }
 }

@@ -13,8 +13,8 @@ public class Advertisement {
     private String headline;
     private String description;
     private String mail;
-    private Theme theme;
     private String number;
+    private Theme theme;
     private Status status;
     private boolean visibility;
 }
