@@ -40,10 +40,10 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
     private static final String SELECT_ALL_USERS = "SELECT * FROM  users ORDER BY id;";
 
     private static final String SELECT_USER_BY_LOGIN = "SELECT COUNT(*) FROM users WHERE email = ? AND login = ? ;";
-    // DO LATER
+
     private static final String SELECT_ALL_USERS_ADVERTISEMENT = "SELECT  Advertisement.id, headline, description, theme, email, phonenumber, status, visibility" +
-            " FROM coherence, Advertisement " +
-            "Where user.id = ?;";
+            " FROM Advertisement " +
+            "Where id_user = ?;";
 
     private static final String SELECT_USER_BY_ID = "SELECT firstname,lastname, email, password, role, login FROM users WHERE id = ? ";
 
@@ -146,7 +146,8 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
             String phone = rs.getString("phonenumber");
             Status status = Status.valueOf(rs.getString("status"));
             boolean visibility = rs.getInt("visibility") > 0;
-            usersAdvertisement.add(new Advertisement(ID, headLine, description, email, phone, theme, status, visibility));
+            int userID = rs.getInt("id_user");
+            usersAdvertisement.add(new Advertisement(ID, headLine, description, email, phone, theme, status, visibility, userID));
         }
         return usersAdvertisement;
     }

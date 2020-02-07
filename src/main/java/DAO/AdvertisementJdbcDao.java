@@ -66,7 +66,8 @@ public class AdvertisementJdbcDao implements JdbcBaseDao<Advertisement> {
             String phonenumber = rs.getString("phonenumber");
             Status status = Status.valueOf(rs.getString("status"));
             boolean visibility = rs.getInt("visibility") > 0;
-            users.add(new Advertisement(ID, headline, description, email, phonenumber, theme, status, visibility));
+            int userID = rs.getInt("id_user");
+            users.add(new Advertisement(ID, headline, description, email, phonenumber, theme, status, visibility, userID));
         }
         return users;
     }
@@ -84,7 +85,8 @@ public class AdvertisementJdbcDao implements JdbcBaseDao<Advertisement> {
         String phonenumber = rs.getString("phonenumber");
         Status status = Status.valueOf(rs.getString("status"));
         boolean visibility = rs.getInt("visibility") > 0;
-        return new Advertisement(id, headline, description, email, phonenumber, theme, status, visibility);
+        int userID = rs.getInt("id_user");
+        return new Advertisement(id, headline, description, email, phonenumber, theme, status, visibility, userID);
     }
 
 
@@ -102,7 +104,8 @@ public class AdvertisementJdbcDao implements JdbcBaseDao<Advertisement> {
             String phonenumber = rs.getString("phonenumber");
             Status status = Status.valueOf(rs.getString("status"));
             boolean visibility = rs.getInt("visibility") > 0;
-            advertisementsByTheme.add(new Advertisement(ID, headline, description, email, phonenumber, theme, status, visibility));
+            int userID = rs.getInt("id_user");
+            advertisementsByTheme.add(new Advertisement(ID, headline, description, email, phonenumber, theme, status, visibility, userID));
         }
         return advertisementsByTheme;
     }
@@ -139,6 +142,7 @@ public class AdvertisementJdbcDao implements JdbcBaseDao<Advertisement> {
             preparedStatement.setString(5, entity.getNumber());
             preparedStatement.setString(6, String.valueOf(entity.getStatus()));
             preparedStatement.setInt(7, entity.isVisibility() ? 1 : 0);
+            preparedStatement.setInt(8, entity.getIdUser());
             return protectedQuery(preparedStatement);
         }
     }

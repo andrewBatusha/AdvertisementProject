@@ -17,4 +17,5 @@ public class Advertisement {
     private Theme theme;
     private Status status;
     private boolean visibility;
+    private int idUser;
 }
