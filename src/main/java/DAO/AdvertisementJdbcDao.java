@@ -27,8 +27,8 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             "status VARCHAR (30)," +
             "visibility INT;";
 
-    private static final String INSERT = "INSERT INTO advertisement(id, headline, description, theme, email, phonenumber, status, visibility) " +
-            "VALUES ( ? , ? , ?, ?, ? , ?, ?, ?);";
+    private static final String INSERT = "INSERT INTO advertisement( headline, description, theme, email, phonenumber, status, visibility) " +
+            "VALUES ( ? , ? , ?, ?, ? , ?, ?);";
 
     private static final String UPDATE = "UPDATE advertisement " +
             "SET headline = ? , description = ? , " +
@@ -37,11 +37,13 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
     private static final String DELETE = "DELETE FROM advertisement " +
             "WHERE id = ?;";
 
+    private static final String SELECT_IF_ADVERTISEMENT_EXIST = "SELECT COUNT(*) FROM advertisement WHERE id = ? ;";
+
     private static final String SELECT_ALL_ADVERTISEMENT = "SELECT * FROM  advertisement ORDER BY id;";
 
     private static final String SELECT_ADVERTISEMENT_BY_THEME = "SELECT * FROM advertisement WHERE theme = ?;";
 
-    private static final String SELECT_ADVERTISEMENT_BY_ID = "SELECT  headline, description, theme, email, phonenumber, status, visibility FROM advertisement WHERE id = ? ";
+    private static final String SELECT_ADVERTISEMENT_BY_ID = "SELECT  headline, description, theme, email, phonenumber, status, visibility, id_user FROM advertisement WHERE id = ? ";
 
     public static boolean createUsersTable() throws IOException {
         return query(CREATE_TABLE);
@@ -151,5 +153,14 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             preparedStatement.setInt(8, entity.getIdUser());
             return protectedQuery(preparedStatement);
         }
+    }
+
+    @Override
+    public boolean isEntityExistInDatabase(int id) throws SQLException, IOException {
+        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_IF_ADVERTISEMENT_EXIST);
+        preparedStatement.setInt(1, id);
+        ResultSet rs = databaseProtectedSelect(preparedStatement);
+        rs.next();
+        return rs.getInt(1) != 0;
     }
 }

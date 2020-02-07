@@ -17,15 +17,18 @@ public class UserService {
             userJdbcDao.insert(user);
     }
 
-    public void deleteUser(User user) throws SQLException, IOException {
-            userJdbcDao.deleteByID(user.getId());
+    public void deleteUser(int id) throws SQLException, IOException {
+            userJdbcDao.deleteByID(id);
     }
 
     public User getUser(int id) throws SQLException, IOException{
         return userJdbcDao.selectByID(id);
     }
+    public List<User> getAllUsers() throws SQLException, IOException{
+        return userJdbcDao.selectAll();
+    }
 
-    void changeUserRole(User user, Role role) throws SQLException, IOException {
+    public void changeUserRole(User user, Role role) throws SQLException, IOException {
         user.setRole(role);
         userJdbcDao.update(user);
     }

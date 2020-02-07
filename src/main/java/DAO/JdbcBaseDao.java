@@ -15,4 +15,6 @@ public interface JdbcBaseDao<T> {
 
     int update(T entity) throws SQLException, IOException;
 
+    boolean isEntityExistInDatabase(int id) throws SQLException, IOException;
+
 }

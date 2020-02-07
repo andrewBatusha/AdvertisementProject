@@ -8,12 +8,13 @@ import static java.util.ResourceBundle.getBundle;
 
 public class DBConnector {
 
+
     public static Connection connect() throws IOException {
         Connection conn = null;
         Statement stmt = null;
         try {
             PropertyResourceBundle resourceBundle = (PropertyResourceBundle) getBundle("db");
-            Class.forName("org.postgresql.Driver");
+            Class.forName(resourceBundle.getString("driver"));
             String url = resourceBundle.getString("url");
             String user = resourceBundle.getString("user");
             String pass = resourceBundle.getString("password");

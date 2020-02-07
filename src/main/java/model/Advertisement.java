@@ -16,6 +16,21 @@ public class Advertisement {
     public Advertisement() {
     }
 
+    @Override
+    public String toString() {
+        return "Advertisement{" +
+                "idAdvertisement=" + idAdvertisement +
+                ", headline='" + headline + '\'' +
+                ", description='" + description + '\'' +
+                ", mail='" + mail + '\'' +
+                ", number='" + number + '\'' +
+                ", theme=" + theme +
+                ", status=" + status +
+                ", visibility=" + visibility +
+                ", idUser=" + idUser +
+                '}';
+    }
+
     public Advertisement(int idAdvertisement, String headline, String description, String mail, String number, Theme theme, Status status, boolean visibility, int idUser) {
         this.idAdvertisement = idAdvertisement;
         this.headline = headline;

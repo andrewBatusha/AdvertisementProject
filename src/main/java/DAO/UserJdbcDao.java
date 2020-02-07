@@ -27,8 +27,8 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             "role VARCHAR (30)," +
             "login VARCHAR (30);";
 
-    private static final String INSERT = "INSERT INTO users(id, firstname, lastname, email, password, role, login) " +
-            "VALUES ( ? , ? , ?, ?, ? , ?, ?);";
+    private static final String INSERT = "INSERT INTO users(firstname, lastname, email, password, role, login) " +
+            "VALUES ( ? , ? , ?, ?, ? , ?);";
 
     private static final String UPDATE = "UPDATE users " +
             "SET firstname = ? , lastname = ? , " +
@@ -39,13 +39,13 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     private static final String SELECT_ALL_USERS = "SELECT * FROM  users ORDER BY id;";
 
-    private static final String SELECT_USER_BY_LOGIN = "SELECT COUNT(*) FROM users WHERE email = ? AND login = ? ;";
+    private static final String SELECT_IF_USER_EXIST = "SELECT COUNT(*) FROM users WHERE id = ? ;";
 
     private static final String SELECT_ALL_USERS_ADVERTISEMENT = "SELECT  Advertisement.id, headline, description, theme, email, phonenumber, status, visibility" +
             " FROM Advertisement " +
             "Where id_user = ?;";
 
-    private static final String SELECT_USER_BY_ID = "SELECT firstname,lastname, email, password, role, login FROM users WHERE id = ? ";
+    private static final String SELECT_USER_BY_ID = "SELECT id, firstname,lastname, email, password, role, login FROM users WHERE id = ? ";
 
 
     public static boolean createUsersTable() throws IOException {
@@ -63,6 +63,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
         List<User> users = new ArrayList<>();
         while (rs.next()) {
             User user = new User();
+            user.setId(rs.getInt("id"));
             user.setName(rs.getString("firstname"));
             user.setSurname(rs.getString("lastname"));
             user.setEmail(rs.getString("email"));
@@ -82,6 +83,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
         ResultSet rs = databaseProtectedSelect(preparedStatement);
         rs.next();
         User user = new User();
+        user.setId(rs.getInt("id"));
         user.setName(rs.getString("firstname"));
         user.setSurname(rs.getString("lastname"));
         user.setEmail(rs.getString("email"));
@@ -92,10 +94,9 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
     }
 
     @Override
-    public boolean isEntityExistInDatabase(User user) throws SQLException, IOException {
-        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_USER_BY_LOGIN);
-        preparedStatement.setString(1, user.getEmail());
-        preparedStatement.setString(2, user.getLogin());
+    public boolean isEntityExistInDatabase(int id) throws SQLException, IOException {
+        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_IF_USER_EXIST);
+        preparedStatement.setInt(1, id);
         ResultSet rs = databaseProtectedSelect(preparedStatement);
         rs.next();
         return rs.getInt(1) != 0;
@@ -124,6 +125,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, String.valueOf(user.getRole()));
             preparedStatement.setString(6, String.valueOf(user.getLogin()));
+            preparedStatement.setInt(7, user.getId());
             return protectedQuery(preparedStatement);
         }
     }

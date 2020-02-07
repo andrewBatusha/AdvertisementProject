@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface IUserDao<T, V> extends JdbcBaseDao<T> {
     List<V> selectAllAdvertisementByUserId(int id) throws SQLException, IOException;
-
-    boolean isEntityExistInDatabase(T user) throws SQLException, IOException;
 }

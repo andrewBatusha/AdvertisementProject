@@ -1,5 +1,4 @@
 
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(½¦ÿÿÿÿÿ
-Ksquid:UselessImportCheck"'Remove this unused import 'model.User'.(˜Ğ ñ
-1squid:S1220""Move this file to a named package.
+8squid:S1220""Move this file to a named package.8‘¼ïş.
+ksquid:S1854"HRemove this useless assignment to local variable "advertisementService".(ì’™ñøÿÿÿÿ8‘¼ïş.
+\squid:S1481"9Remove this unused "advertisementService" local variable.(ì’™ñøÿÿÿÿ8‘¼ïş.

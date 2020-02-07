@@ -27,3 +27,9 @@ H
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 [
 +src/main/java/DAO/AdvertisementJdbcDao.java,e\5\e56b66aeff8290e638632a38648a83e3ea367115
+X
+(src/main/java/DAO/IAdvertisementDao.java,9\d\9d803c5e36b38217c57387b1b6a174d6f2815dc0
+O
+src/main/java/DAO/IUserDao.java,c\b\cb36d0a109c38d7415f9290f89c720b5324d1dfc
+P
+ src/main/resources/db.properties,7\7\779348f654a78c25c1b2a58c09d119b35347dc0d

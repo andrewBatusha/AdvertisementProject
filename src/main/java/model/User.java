@@ -19,7 +19,19 @@ public class User {
     public User() {
     }
 
-    ;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", login='" + login + '\'' +
+                ", advertisements=" + advertisements +
+                '}';
+    }
 
     public User(int id, String name, String surname, String email, String password, Role role, String login, List<Advertisement> advertisements) {
         this.id = id;
@@ -95,7 +107,7 @@ public class User {
     public void setAdvertisements(List<Advertisement> advertisements) throws NullPointerException {
         if (advertisements == null) {
             this.advertisements = advertisements;
-        }else {
+        } else {
             throw new NullPointerException();
         }
     }
