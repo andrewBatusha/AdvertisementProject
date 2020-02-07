@@ -1,31 +1,36 @@
 package service;
 
+import DAO.IUserDao;
 import DAO.UserJdbcDao;
 import enums.Role;
+import model.Advertisement;
 import model.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserService {
-    private static UserJdbcDao userJdbcDao;
+    private static IUserDao<User, Advertisement> userJdbcDao = new UserJdbcDao();
 
     public void addUser(User user) throws SQLException, IOException {
-        if (!userJdbcDao.isEntityExistInDatabase(user)) {
             userJdbcDao.insert(user);
-        }
     }
 
     public void deleteUser(User user) throws SQLException, IOException {
-        if (userJdbcDao.isEntityExistInDatabase(user)) {
-            userJdbcDao.deleteByID(user.getIdUser());
-        }
+            userJdbcDao.deleteByID(user.getId());
     }
 
-    void changeRole(User user, Role role) throws SQLException, IOException {
+    public User getUser(int id) throws SQLException, IOException{
+        return userJdbcDao.selectByID(id);
+    }
+
+    void changeUserRole(User user, Role role) throws SQLException, IOException {
         user.setRole(role);
         userJdbcDao.update(user);
     }
 
-
+    List<Advertisement> getMyAdvertisement(User user) throws SQLException, IOException {
+        return userJdbcDao.selectAllAdvertisementByUserId(user.getId());
+    }
 }

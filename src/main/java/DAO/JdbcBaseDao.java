@@ -11,7 +11,8 @@ public interface JdbcBaseDao<T> {
 
     int insert(T entity) throws SQLException, IOException;
 
-    int deleteByID(int id) throws SQLException, IOException;
+    T deleteByID(int id) throws SQLException, IOException;
 
     int update(T entity) throws SQLException, IOException;
+
 }

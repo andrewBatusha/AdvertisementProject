@@ -13,7 +13,7 @@ import java.util.List;
 
 import static DAO.DBConnector.*;
 
-public class AdvertisementJdbcDao implements JdbcBaseDao<Advertisement> {
+public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
 
     private static final String DROP_TABLE = "DROP TABLE advertisement;";
 
@@ -56,20 +56,21 @@ public class AdvertisementJdbcDao implements JdbcBaseDao<Advertisement> {
     public List<Advertisement> selectAll() throws SQLException, IOException {
         PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_ALL_ADVERTISEMENT);
         ResultSet rs = databaseProtectedSelect(preparedStatement);
-        List<Advertisement> users = new ArrayList<>();
+        List<Advertisement> advertisements = new ArrayList<>();
         while (rs.next()) {
-            int ID = rs.getInt("id");
-            String headline = rs.getString("headline");
-            String description = rs.getString("description");
-            Theme theme = Theme.valueOf(rs.getString("theme"));
-            String email = rs.getString("email");
-            String phonenumber = rs.getString("phonenumber");
-            Status status = Status.valueOf(rs.getString("status"));
-            boolean visibility = rs.getInt("visibility") > 0;
-            int userID = rs.getInt("id_user");
-            users.add(new Advertisement(ID, headline, description, email, phonenumber, theme, status, visibility, userID));
+            Advertisement advertisement = new Advertisement();
+            advertisement.setIdAdvertisement(rs.getInt("id"));
+            advertisement.setHeadline(rs.getString("headline"));
+            advertisement.setDescription(rs.getString("description"));
+            advertisement.setTheme(Theme.valueOf(rs.getString("theme")));
+            advertisement.setMail(rs.getString("email"));
+            advertisement.setNumber(rs.getString("phonenumber"));
+            advertisement.setStatus(Status.valueOf(rs.getString("status")));
+            advertisement.setVisibility(rs.getInt("visibility") > 0);
+            advertisement.setIdUser(rs.getInt("id_user"));
+            advertisements.add(advertisement);
         }
-        return users;
+        return advertisements;
     }
 
     @Override
@@ -78,34 +79,37 @@ public class AdvertisementJdbcDao implements JdbcBaseDao<Advertisement> {
         preparedStatement.setInt(1, id);
         ResultSet rs = databaseProtectedSelect(preparedStatement);
         rs.next();
-        String headline = rs.getString("headline");
-        String description = rs.getString("description");
-        Theme theme = Theme.valueOf(rs.getString("theme"));
-        String email = rs.getString("email");
-        String phonenumber = rs.getString("phonenumber");
-        Status status = Status.valueOf(rs.getString("status"));
-        boolean visibility = rs.getInt("visibility") > 0;
-        int userID = rs.getInt("id_user");
-        return new Advertisement(id, headline, description, email, phonenumber, theme, status, visibility, userID);
+        Advertisement advertisement = new Advertisement();
+        advertisement.setIdAdvertisement(id);
+        advertisement.setHeadline(rs.getString("headline"));
+        advertisement.setDescription(rs.getString("description"));
+        advertisement.setTheme(Theme.valueOf(rs.getString("theme")));
+        advertisement.setMail(rs.getString("email"));
+        advertisement.setNumber(rs.getString("phonenumber"));
+        advertisement.setStatus(Status.valueOf(rs.getString("status")));
+        advertisement.setVisibility(rs.getInt("visibility") > 0);
+        advertisement.setIdUser(rs.getInt("id_user"));
+        return advertisement;
     }
 
-
+    @Override
     public List<Advertisement> selectAllByTheme(Theme advertisementTheme) throws SQLException, IOException {
         PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_ADVERTISEMENT_BY_THEME);
         preparedStatement.setString(1, String.valueOf(advertisementTheme));
         ResultSet rs = databaseProtectedSelect(preparedStatement);
         List<Advertisement> advertisementsByTheme = new ArrayList<>();
         while (rs.next()) {
-            int ID = rs.getInt("id");
-            String headline = rs.getString("headline");
-            String description = rs.getString("description");
-            Theme theme = Theme.valueOf(rs.getString("theme"));
-            String email = rs.getString("email");
-            String phonenumber = rs.getString("phonenumber");
-            Status status = Status.valueOf(rs.getString("status"));
-            boolean visibility = rs.getInt("visibility") > 0;
-            int userID = rs.getInt("id_user");
-            advertisementsByTheme.add(new Advertisement(ID, headline, description, email, phonenumber, theme, status, visibility, userID));
+            Advertisement advertisement = new Advertisement();
+            advertisement.setIdAdvertisement(rs.getInt("id"));
+            advertisement.setHeadline(rs.getString("headline"));
+            advertisement.setDescription(rs.getString("description"));
+            advertisement.setTheme(Theme.valueOf(rs.getString("theme")));
+            advertisement.setMail(rs.getString("email"));
+            advertisement.setNumber(rs.getString("phonenumber"));
+            advertisement.setStatus(Status.valueOf(rs.getString("status")));
+            advertisement.setVisibility(rs.getInt("visibility") > 0);
+            advertisement.setIdUser(rs.getInt("id_user"));
+            advertisementsByTheme.add(advertisement);
         }
         return advertisementsByTheme;
     }
@@ -126,10 +130,12 @@ public class AdvertisementJdbcDao implements JdbcBaseDao<Advertisement> {
     }
 
     @Override
-    public int deleteByID(int id) throws SQLException, IOException {
+    public Advertisement deleteByID(int id) throws SQLException, IOException {
+        Advertisement adv = selectByID(id);
         PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(DELETE);
         preparedStatement.setInt(1, id);
-        return protectedQuery(preparedStatement);
+        protectedQuery(preparedStatement);
+        return adv;
     }
 
     @Override

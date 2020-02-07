@@ -15,7 +15,7 @@ import java.util.List;
 
 import static DAO.DBConnector.*;
 
-public class UserJdbcDao implements JdbcBaseDao<User> {
+public class UserJdbcDao implements IUserDao<User, Advertisement> {
     private static final String DROP_TABLE = "DROP TABLE users;";
 
     private static final String CREATE_TABLE = "CREATE TABLE users " +
@@ -62,14 +62,14 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
         ResultSet rs = databaseProtectedSelect(preparedStatement);
         List<User> users = new ArrayList<>();
         while (rs.next()) {
-            int ID = rs.getInt("id");
-            String firstName = rs.getString("firstname");
-            String lastName = rs.getString("lastname");
-            String email = rs.getString("email");
-            String password = rs.getString("password");
-            Role role = Role.valueOf(rs.getString("role"));
-            String login = rs.getString("login");
-            users.add(new User(ID, firstName, lastName, email, password, role, login));
+            User user = new User();
+            user.setName(rs.getString("firstname"));
+            user.setSurname(rs.getString("lastname"));
+            user.setEmail(rs.getString("email"));
+            user.setPassword(rs.getString("password"));
+            user.setRole(Role.valueOf(rs.getString("role")));
+            user.setLogin(rs.getString("login"));
+            users.add(user);
         }
         return users;
     }
@@ -81,15 +81,17 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
         preparedStatement.setInt(1, id);
         ResultSet rs = databaseProtectedSelect(preparedStatement);
         rs.next();
-        String firstName = rs.getString("firstname");
-        String lastName = rs.getString("lastname");
-        String email = rs.getString("email");
-        String password = rs.getString("password");
-        Role role = Role.valueOf(rs.getString("role"));
-        String login = rs.getString("login");
-        return new User(id, firstName, lastName, email, password, role, login);
+        User user = new User();
+        user.setName(rs.getString("firstname"));
+        user.setSurname(rs.getString("lastname"));
+        user.setEmail(rs.getString("email"));
+        user.setPassword(rs.getString("password"));
+        user.setRole(Role.valueOf(rs.getString("role")));
+        user.setLogin(rs.getString("login"));
+        return user;
     }
 
+    @Override
     public boolean isEntityExistInDatabase(User user) throws SQLException, IOException {
         PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_USER_BY_LOGIN);
         preparedStatement.setString(1, user.getEmail());
@@ -127,29 +129,33 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
     }
 
     @Override
-    public int deleteByID(int id) throws SQLException, IOException {
+    public User deleteByID(int id) throws SQLException, IOException {
+        User user = selectByID(id);
         PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(DELETE);
         preparedStatement.setInt(1, id);
-        return protectedQuery(preparedStatement);
+        protectedQuery(preparedStatement);
+        return user;
     }
 
-    public List<Advertisement> selectUsersAdvertisement() throws SQLException, IOException {
+    @Override
+    public List<Advertisement> selectAllAdvertisementByUserId(int id) throws SQLException, IOException {
         PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_ALL_USERS_ADVERTISEMENT);
+        preparedStatement.setInt(1, id);
         ResultSet rs = databaseProtectedSelect(preparedStatement);
         List<Advertisement> usersAdvertisement = new ArrayList<>();
         while (rs.next()) {
-            int ID = rs.getInt("id");
-            String headLine = rs.getString("headline");
-            String description = rs.getString("description");
-            Theme theme = Theme.valueOf(rs.getString("email"));
-            String email = rs.getString("email");
-            String phone = rs.getString("phonenumber");
-            Status status = Status.valueOf(rs.getString("status"));
-            boolean visibility = rs.getInt("visibility") > 0;
-            int userID = rs.getInt("id_user");
-            usersAdvertisement.add(new Advertisement(ID, headLine, description, email, phone, theme, status, visibility, userID));
+            Advertisement advertisement = new Advertisement();
+            advertisement.setIdAdvertisement(id);
+            advertisement.setHeadline(rs.getString("headline"));
+            advertisement.setDescription(rs.getString("description"));
+            advertisement.setTheme(Theme.valueOf(rs.getString("theme")));
+            advertisement.setMail(rs.getString("email"));
+            advertisement.setNumber(rs.getString("phonenumber"));
+            advertisement.setStatus(Status.valueOf(rs.getString("status")));
+            advertisement.setVisibility(rs.getInt("visibility") > 0);
+            advertisement.setIdUser(rs.getInt("id_user"));
+            usersAdvertisement.add(advertisement);
         }
         return usersAdvertisement;
     }
-
 }
