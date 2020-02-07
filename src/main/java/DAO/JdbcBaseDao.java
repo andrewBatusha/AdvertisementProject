@@ -9,9 +9,9 @@ public interface JdbcBaseDao<T> {
 
     T selectByID(int id) throws SQLException, IOException;
 
-    public boolean isEntityExistInDatabase(T entity) throws SQLException, IOException;
-
     int insert(T entity) throws SQLException, IOException;
 
     int deleteByID(int id) throws SQLException, IOException;
+
+    int update(T entity) throws SQLException, IOException;
 }

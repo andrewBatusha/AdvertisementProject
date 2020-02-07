@@ -48,8 +48,6 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
     private static final String SELECT_USER_BY_ID = "SELECT firstname,lastname, email, password, role, login FROM users WHERE id = ? ";
 
 
-
-
     public static boolean createUsersTable() throws IOException {
         return query(CREATE_TABLE);
     }
@@ -71,7 +69,7 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
             String password = rs.getString("password");
             Role role = Role.valueOf(rs.getString("role"));
             String login = rs.getString("login");
-            users.add(new User(ID, firstName,lastName, email, password, role, login));
+            users.add(new User(ID, firstName, lastName, email, password, role, login));
         }
         return users;
     }
@@ -80,22 +78,22 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
     @Override
     public User selectByID(int id) throws SQLException, IOException {
         PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_USER_BY_ID);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         ResultSet rs = databaseProtectedSelect(preparedStatement);
         rs.next();
-            String firstName = rs.getString("firstname");
-            String lastName = rs.getString("lastname");
-            String email = rs.getString("email");
-            String password = rs.getString("password");
-            Role role =  Role.valueOf(rs.getString("role"));
-            String login = rs.getString("login");
-            return new User(id, firstName, lastName, email, password, role, login);
+        String firstName = rs.getString("firstname");
+        String lastName = rs.getString("lastname");
+        String email = rs.getString("email");
+        String password = rs.getString("password");
+        Role role = Role.valueOf(rs.getString("role"));
+        String login = rs.getString("login");
+        return new User(id, firstName, lastName, email, password, role, login);
     }
 
     public boolean isEntityExistInDatabase(User user) throws SQLException, IOException {
         PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_USER_BY_LOGIN);
-        preparedStatement.setString(1,user.getEmail());
-        preparedStatement.setString(2,user.getLogin());
+        preparedStatement.setString(1, user.getEmail());
+        preparedStatement.setString(2, user.getLogin());
         ResultSet rs = databaseProtectedSelect(preparedStatement);
         rs.next();
         return rs.getInt(1) != 0;
@@ -104,7 +102,7 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
 
     @Override
     public int insert(User user) throws SQLException, IOException {
-        try(PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(INSERT)) {
+        try (PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(INSERT)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
             preparedStatement.setString(3, user.getEmail());
@@ -115,8 +113,9 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
         }
     }
 
+    @Override
     public int update(User user) throws SQLException, IOException {
-        try(PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(UPDATE)) {
+        try (PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(UPDATE)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
             preparedStatement.setString(3, user.getEmail());
@@ -130,7 +129,7 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
     @Override
     public int deleteByID(int id) throws SQLException, IOException {
         PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(DELETE);
-        preparedStatement.setInt(1,id);
+        preparedStatement.setInt(1, id);
         return protectedQuery(preparedStatement);
     }
 
@@ -147,7 +146,7 @@ public class UserJdbcDao implements JdbcBaseDao<User> {
             String phone = rs.getString("phonenumber");
             Status status = Status.valueOf(rs.getString("status"));
             boolean visibility = rs.getInt("visibility") > 0;
-            usersAdvertisement.add(new Advertisement(ID, headLine,description, email, phone,theme,status, visibility));
+            usersAdvertisement.add(new Advertisement(ID, headLine, description, email, phone, theme, status, visibility));
         }
         return usersAdvertisement;
     }

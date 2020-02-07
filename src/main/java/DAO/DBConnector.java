@@ -12,7 +12,7 @@ public class DBConnector {
         Connection conn = null;
         Statement stmt = null;
         try {
-            PropertyResourceBundle resourceBundle = (PropertyResourceBundle)getBundle("db");
+            PropertyResourceBundle resourceBundle = (PropertyResourceBundle) getBundle("db");
             Class.forName("org.postgresql.Driver");
             String url = resourceBundle.getString("url");
             String user = resourceBundle.getString("user");
@@ -29,10 +29,9 @@ public class DBConnector {
     public static boolean query(String SQLquery) throws IOException {
         Connection connection = DBConnector.connect();
         boolean hasException = false;
-        try( Statement stmt = connection.createStatement()) {
+        try (Statement stmt = connection.createStatement()) {
             stmt.executeUpdate(SQLquery);
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("Something wrong in sql query ");
             hasException = true;
         }
@@ -40,7 +39,7 @@ public class DBConnector {
     }
 
     //for update,insert,delete
-    public static int protectedQuery(PreparedStatement preparedStatement)  {
+    public static int protectedQuery(PreparedStatement preparedStatement) {
         int rows = 0;
         try {
             rows = preparedStatement.executeUpdate();

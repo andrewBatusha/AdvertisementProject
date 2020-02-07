@@ -10,14 +10,14 @@ import java.sql.SQLException;
 public class UserService {
     private static UserJdbcDao userJdbcDao;
 
-    public void addUser(User user) throws SQLException, IOException{
-        if(!userJdbcDao.isEntityExistInDatabase(user)) {
+    public void addUser(User user) throws SQLException, IOException {
+        if (!userJdbcDao.isEntityExistInDatabase(user)) {
             userJdbcDao.insert(user);
         }
     }
 
-    public void deleteUser(User user) throws SQLException, IOException{
-        if(userJdbcDao.isEntityExistInDatabase(user)) {
+    public void deleteUser(User user) throws SQLException, IOException {
+        if (userJdbcDao.isEntityExistInDatabase(user)) {
             userJdbcDao.deleteByID(user.getIdUser());
         }
     }
