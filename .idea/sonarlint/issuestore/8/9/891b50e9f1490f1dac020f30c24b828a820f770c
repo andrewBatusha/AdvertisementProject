@@ -1,7 +1,0 @@
-
-ksquid:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(“ïĞ˜8ß­§ı.
-psquid:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(éØªûÿÿÿÿ8ß­§ı.
-psquid:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ô§íõúÿÿÿÿ8ß­§ı.
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òª8ß­§ı.
-bsquid:S1192"FDefine a constant instead of duplicating this literal "email" 3 times.(ƒ™ÿ8ß­§ı.
-psquid:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ªÜ‘Ÿüÿÿÿÿ8ß­§ı.

@@ -1,8 +1,6 @@
-import enums.Role;
 import enums.Status;
 import enums.Theme;
 import model.Advertisement;
-import model.User;
 import service.AdvertisementService;
 import service.UserService;
 

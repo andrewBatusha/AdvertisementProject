@@ -1,15 +1,13 @@
 
-Vsquid:S1118":Add a private constructor to hide the implicit public one.( Û≈¸8Œ…®˝Å.
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(ç≈∏Ÿ˝ˇˇˇˇ8Œ…®˝Å.
-nsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰∆∆∞8Œ…®˝Å.
-Nsquid:S4925"-Remove this "Class.forName()", it is useless.(ıÜ®ƒ˘ˇˇˇˇ8Œ…®˝Å.
-dsquid:S2259"HA "NullPointerException" could be thrown; "connection" is nullable here.(√ü“¬8Œ…®˝Å.
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(„Î∆Ö˙ˇˇˇˇ8Œ…®˝Å.
-ß%squid:RedundantThrowsDeclarationCheck"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(™èôÚ˚ˇˇˇˇ8Œ…®˝Å.
-Esquid:S1481")Remove this unused "stmt" local variable.(ñ‘¿°8Œ…®˝Å.
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ƒîÚ™8Œ…®˝Å.
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(Ù∂Ÿ≈ˇˇˇˇˇ8Œ…®˝Å.
-Tsquid:S1068"3Remove this unused "PROPERTIES_PATH" private field.(ñ‡°≈¯ˇˇˇˇ8ßµ¥˛Å.
+]squid:S2259"HA "NullPointerException" could be thrown; "connection" is nullable here.(√ü“¬
+gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰∆∆∞
+psquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ƒîÚ™
+Osquid:S1118":Add a private constructor to hide the implicit public one.( Û≈¸
+†%squid:RedundantThrowsDeclarationCheck"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(™èôÚ˚ˇˇˇˇ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ù∂Ÿ≈ˇˇˇˇˇ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ç≈∏Ÿ˝ˇˇˇˇ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(„Î∆Ö˙ˇˇˇˇ
+>squid:S1481")Remove this unused "stmt" local variable.(ñ‘¿°

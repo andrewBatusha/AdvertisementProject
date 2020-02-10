@@ -1,4 +1,10 @@
 
-8squid:S1220""Move this file to a named package.8‘¼ïş.
-ksquid:S1854"HRemove this useless assignment to local variable "advertisementService".(ì’™ñøÿÿÿÿ8‘¼ïş.
-\squid:S1481"9Remove this unused "advertisementService" local variable.(ì’™ñøÿÿÿÿ8‘¼ïş.
+1squid:S1220""Move this file to a named package.
+Qsquid:S1854"7Remove this useless assignment to local variable "adv".(ã»î¤ûÿÿÿÿ
+Ysquid:S1854"?Remove this useless assignment to local variable "userService".( óŒİÿÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(Í¢ß‹øÿÿÿÿ
+Jsquid:S1481"0Remove this unused "userService" local variable.( óŒİÿÿÿÿÿ
+Bsquid:S1481"(Remove this unused "adv" local variable.(ã»î¤ûÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¡¼Ó†
+_squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ü¹×

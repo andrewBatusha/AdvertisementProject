@@ -12,6 +12,9 @@ public class Advertisement {
     private String number;
     private Theme theme;
     private Status status = Status.WAITING;
+    private boolean visibility = false;
+    private int idUser;
+
 
     public Advertisement() {
     }
@@ -30,6 +33,7 @@ public class Advertisement {
                 ", idUser=" + idUser +
                 '}';
     }
+
 
     public Advertisement(int idAdvertisement, String headline, String description, String mail, String number, Theme theme, Status status, boolean visibility, int idUser) {
         this.idAdvertisement = idAdvertisement;
@@ -114,7 +118,4 @@ public class Advertisement {
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
-
-    private boolean visibility = false;
-    private int idUser;
 }
