@@ -1,13 +1,17 @@
-package DAO;
+package DAO.impl;
 
+import DAO.DBConnector;
+import DAO.IAdvertisementDao;
 import enums.Status;
 import enums.Theme;
 import model.Advertisement;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,14 +29,17 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             "email VARCHAR (30)," +
             "phonenumber VARCHAR (30)," +
             "status VARCHAR (30)," +
-            "visibility INT;";
+            "visibility INT," +
+            "date_published date," +
+            "id_user int," +
+            "FOREIGN KEY (id_user) REFERENCES User (Id));";
 
-    private static final String INSERT = "INSERT INTO advertisement( headline, description, theme, email, phonenumber, status, visibility) " +
-            "VALUES ( ? , ? , ?, ?, ? , ?, ?);";
+    private static final String INSERT = "INSERT INTO advertisement( headline, description, theme, email, phonenumber, status, visibility, id_user, date_published) " +
+            "VALUES ( ? , ? , ?, ?, ? , ?, ?, ?, ?);";
 
     private static final String UPDATE = "UPDATE advertisement " +
             "SET headline = ? , description = ? , " +
-            " theme = ?, email = ?, phonenumber = ?, status = ?, visibility = ? WHERE id = ?;";
+            " theme = ?, email = ?, phonenumber = ?, status = ?, visibility = ?, id_user = ?, date_published WHERE id = ?;";
 
     private static final String DELETE = "DELETE FROM advertisement " +
             "WHERE id = ?;";
@@ -43,7 +50,7 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
 
     private static final String SELECT_ADVERTISEMENT_BY_THEME = "SELECT * FROM advertisement WHERE theme = ?;";
 
-    private static final String SELECT_ADVERTISEMENT_BY_ID = "SELECT  headline, description, theme, email, phonenumber, status, visibility, id_user FROM advertisement WHERE id = ? ";
+    private static final String SELECT_ADVERTISEMENT_BY_ID = "SELECT  headline, description, theme, email, phonenumber, status, visibility, id_user, date_published FROM advertisement WHERE id = ? ";
 
     public static boolean createUsersTable() throws IOException {
         return query(CREATE_TABLE);
@@ -70,6 +77,7 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             advertisement.setStatus(Status.valueOf(rs.getString("status")));
             advertisement.setVisibility(rs.getInt("visibility") > 0);
             advertisement.setIdUser(rs.getInt("id_user"));
+            advertisement.setDateOfPublished(rs.getDate("date_published").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             advertisements.add(advertisement);
         }
         return advertisements;
@@ -91,6 +99,7 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
         advertisement.setStatus(Status.valueOf(rs.getString("status")));
         advertisement.setVisibility(rs.getInt("visibility") > 0);
         advertisement.setIdUser(rs.getInt("id_user"));
+        advertisement.setDateOfPublished(rs.getDate("date_published").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         return advertisement;
     }
 
@@ -111,6 +120,7 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             advertisement.setStatus(Status.valueOf(rs.getString("status")));
             advertisement.setVisibility(rs.getInt("visibility") > 0);
             advertisement.setIdUser(rs.getInt("id_user"));
+            advertisement.setDateOfPublished(rs.getDate("date_published").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             advertisementsByTheme.add(advertisement);
         }
         return advertisementsByTheme;
@@ -127,6 +137,7 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             preparedStatement.setString(5, entity.getNumber());
             preparedStatement.setString(6, String.valueOf(entity.getStatus()));
             preparedStatement.setInt(7, entity.isVisibility() ? 1 : 0);
+            preparedStatement.setDate(8, Date.valueOf(entity.getDateOfPublished()));
             return protectedQuery(preparedStatement);
         }
     }
@@ -151,6 +162,7 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             preparedStatement.setString(6, String.valueOf(entity.getStatus()));
             preparedStatement.setInt(7, entity.isVisibility() ? 1 : 0);
             preparedStatement.setInt(8, entity.getIdUser());
+            preparedStatement.setDate(9, Date.valueOf(entity.getDateOfPublished()));
             return protectedQuery(preparedStatement);
         }
     }

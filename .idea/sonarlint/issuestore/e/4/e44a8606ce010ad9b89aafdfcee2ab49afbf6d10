@@ -1,10 +1,13 @@
 
-1squid:S1220""Move this file to a named package.
-Qsquid:S1854"7Remove this useless assignment to local variable "adv".(ã»î¤ûÿÿÿÿ
-Ysquid:S1854"?Remove this useless assignment to local variable "userService".( óŒÝÿÿÿÿÿ
-R
-squid:S106"9Replace this use of System.out or System.err by a logger.(Í¢ß‹øÿÿÿÿ
-Jsquid:S1481"0Remove this unused "userService" local variable.( óŒÝÿÿÿÿÿ
-Bsquid:S1481"(Remove this unused "adv" local variable.(ã»î¤ûÿÿÿÿ
-`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¡¼Ó†
-_squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ü¹×
+8squid:S1220""Move this file to a named package.8½òêÉƒ.
+Zsquid:S1854"7Remove this useless assignment to local variable "adv".(ã»î¤ûÿÿÿÿ8½òêÉƒ.
+bsquid:S1854"?Remove this useless assignment to local variable "userService".( óŒÝÿÿÿÿÿ8½òêÉƒ.
+Wsquid:S2440"4Remove this instantiation of "AdvertisementService".(ì’™ñøÿÿÿÿ8½òêÉƒ.
+Xsquid:S2209"5Change this instance-reference to a static reference.(Í¢ß‹øÿÿÿÿ8½òêÉƒ.
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(Í¢ß‹øÿÿÿÿ8½òêÉƒ.
+Ssquid:S1481"0Remove this unused "userService" local variable.( óŒÝÿÿÿÿÿ8½òêÉƒ.
+Ksquid:S1481"(Remove this unused "adv" local variable.(ã»î¤ûÿÿÿÿ8½òêÉƒ.
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¡¼Ó†8½òêÉƒ.
+hsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ü¹×
+8½òêÉƒ.

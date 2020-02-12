@@ -1,5 +1,7 @@
 package DAO;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.PropertyResourceBundle;
@@ -7,6 +9,9 @@ import java.util.PropertyResourceBundle;
 import static java.util.ResourceBundle.getBundle;
 
 public class DBConnector {
+    final static Logger logger = Logger.getLogger(DBConnector.class);
+
+
 
 
     public static Connection connect() throws IOException {
@@ -21,7 +26,7 @@ public class DBConnector {
             conn = DriverManager.getConnection(url, user, pass);
 
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println("cannot connected to bd");
+            logger.error("cannot connected to bd");
         }
         return conn;
     }
@@ -33,7 +38,7 @@ public class DBConnector {
         try (Statement stmt = connection.createStatement()) {
             stmt.executeUpdate(SQLquery);
         } catch (SQLException e) {
-            System.out.println("Something wrong in sql query ");
+            logger.error("Something wrong in sql query ");
             hasException = true;
         }
         return !hasException;
@@ -46,7 +51,7 @@ public class DBConnector {
             rows = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
-            System.out.println("Something wrong in sql query with prepared statement ");
+            logger.error("Something wrong in sql query with prepared statement ");
         }
         return rows;
     }

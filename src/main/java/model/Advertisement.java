@@ -4,6 +4,8 @@ package model;
 import enums.Status;
 import enums.Theme;
 
+import java.time.LocalDate;
+
 public class Advertisement {
     private int idAdvertisement;
     private String headline;
@@ -14,9 +16,18 @@ public class Advertisement {
     private Status status = Status.WAITING;
     private boolean visibility = false;
     private int idUser;
+    private LocalDate dateOfPublished;
 
 
     public Advertisement() {
+    }
+
+    public LocalDate getDateOfPublished() {
+        return dateOfPublished;
+    }
+
+    public void setDateOfPublished(LocalDate dateOfPublished) {
+        this.dateOfPublished = dateOfPublished;
     }
 
     @Override
@@ -35,7 +46,7 @@ public class Advertisement {
     }
 
 
-    public Advertisement(int idAdvertisement, String headline, String description, String mail, String number, Theme theme, Status status, boolean visibility, int idUser) {
+    public Advertisement(int idAdvertisement, String headline, String description, String mail, String number, Theme theme, Status status, boolean visibility, int idUser, LocalDate dateOfPublished) {
         this.idAdvertisement = idAdvertisement;
         this.headline = headline;
         this.description = description;
@@ -45,6 +56,7 @@ public class Advertisement {
         this.status = status;
         this.visibility = visibility;
         this.idUser = idUser;
+        this.dateOfPublished = dateOfPublished;
     }
 
     public int getIdAdvertisement() {

@@ -1,7 +1,7 @@
 package service;
 
 import DAO.IUserDao;
-import DAO.UserJdbcDao;
+import DAO.impl.UserJdbcDao;
 import enums.Role;
 import model.Advertisement;
 import model.User;
@@ -13,27 +13,27 @@ import java.util.List;
 public class UserService {
     private static IUserDao<User, Advertisement> userJdbcDao = new UserJdbcDao();
 
-    public void addUser(User user) throws SQLException, IOException {
+    public static void addUser(User user) throws SQLException, IOException {
             userJdbcDao.insert(user);
     }
 
-    public void deleteUser(int id) throws SQLException, IOException {
+    public static void deleteUser(int id) throws SQLException, IOException {
             userJdbcDao.deleteByID(id);
     }
 
-    public User getUser(int id) throws SQLException, IOException{
+    public static User getUser(int id) throws SQLException, IOException{
         return userJdbcDao.selectByID(id);
     }
-    public List<User> getAllUsers() throws SQLException, IOException{
+    public static List<User> getAllUsers() throws SQLException, IOException{
         return userJdbcDao.selectAll();
     }
 
-    public void changeUserRole(User user, Role role) throws SQLException, IOException {
+    public static void changeUserRole(User user, Role role) throws SQLException, IOException {
         user.setRole(role);
         userJdbcDao.update(user);
     }
 
-    List<Advertisement> getMyAdvertisement(User user) throws SQLException, IOException {
+    static List<Advertisement> getMyAdvertisement(User user) throws SQLException, IOException {
         return userJdbcDao.selectAllAdvertisementByUserId(user.getId());
     }
 }

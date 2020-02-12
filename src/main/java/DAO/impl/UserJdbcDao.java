@@ -1,5 +1,7 @@
-package DAO;
+package DAO.impl;
 
+import DAO.DBConnector;
+import DAO.IUserDao;
 import enums.Role;
 import enums.Status;
 import enums.Theme;
@@ -24,15 +26,14 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             "lastname VARCHAR (30)," +
             "email VARCHAR (30)," +
             "password VARCHAR (30)," +
-            "role VARCHAR (30)," +
-            "login VARCHAR (30);";
+            "role VARCHAR (30);";
 
-    private static final String INSERT = "INSERT INTO users(firstname, lastname, email, password, role, login) " +
-            "VALUES ( ? , ? , ?, ?, ? , ?);";
+    private static final String INSERT = "INSERT INTO users(firstname, lastname, email, password, role) " +
+            "VALUES ( ? , ? , ?, ?, ? );";
 
     private static final String UPDATE = "UPDATE users " +
             "SET firstname = ? , lastname = ? , " +
-            " email = ?, password = ?, role = ?, login = ? WHERE id = ?;";
+            " email = ?, password = ?, role = ? WHERE id = ?;";
 
     private static final String DELETE = "DELETE FROM users " +
             "WHERE id = ?;";
@@ -45,7 +46,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             " FROM Advertisement " +
             "Where id_user = ?;";
 
-    private static final String SELECT_USER_BY_ID = "SELECT id, firstname,lastname, email, password, role, login FROM users WHERE id = ? ";
+    private static final String SELECT_USER_BY_ID = "SELECT id, firstname,lastname, email, password, role FROM users WHERE id = ? ";
 
 
     public static boolean createUsersTable() throws IOException {
@@ -69,7 +70,6 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));
             user.setRole(Role.valueOf(rs.getString("role")));
-            user.setLogin(rs.getString("login"));
             users.add(user);
         }
         return users;
@@ -89,7 +89,6 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
         user.setEmail(rs.getString("email"));
         user.setPassword(rs.getString("password"));
         user.setRole(Role.valueOf(rs.getString("role")));
-        user.setLogin(rs.getString("login"));
         return user;
     }
 
@@ -111,7 +110,6 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, String.valueOf(user.getRole()));
-            preparedStatement.setString(6, user.getLogin());
             return protectedQuery(preparedStatement);
         }
     }
@@ -124,8 +122,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, String.valueOf(user.getRole()));
-            preparedStatement.setString(6, String.valueOf(user.getLogin()));
-            preparedStatement.setInt(7, user.getId());
+            preparedStatement.setInt(6, user.getId());
             return protectedQuery(preparedStatement);
         }
     }
