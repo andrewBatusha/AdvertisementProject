@@ -9,13 +9,18 @@ import java.util.PropertyResourceBundle;
 import static java.util.ResourceBundle.getBundle;
 
 public class DBConnector {
+    public DBConnector(String name) {
+        this.name = name;
+    }
+
+    private String name;
 
     final static Logger logger = Logger.getLogger(DBConnector.class);
 
-    public static Connection connect() throws IOException {
+    public Connection connect() {
         Connection conn = null;
         try {
-            PropertyResourceBundle resourceBundle = (PropertyResourceBundle) getBundle("dbtest");
+            PropertyResourceBundle resourceBundle = (PropertyResourceBundle) getBundle(name);
             Class.forName(resourceBundle.getString("driver"));
             String url = resourceBundle.getString("url");
             String user = resourceBundle.getString("user");
@@ -29,8 +34,8 @@ public class DBConnector {
     }
 
     //for creating and dropping tables
-    public static boolean query(String SQLquery) throws IOException {
-        Connection connection = DBConnector.connect();
+    public boolean query(String SQLquery)  {
+        Connection connection = connect();
         boolean hasException = false;
         try (Statement stmt = connection.createStatement()) {
             stmt.executeUpdate(SQLquery);
@@ -42,7 +47,7 @@ public class DBConnector {
     }
 
     //for update,insert,delete
-    public static int protectedQuery(PreparedStatement preparedStatement) {
+    public int protectedQuery(PreparedStatement preparedStatement) {
         int rows = 0;
         try {
             rows = preparedStatement.executeUpdate();
@@ -53,7 +58,7 @@ public class DBConnector {
         return rows;
     }
 
-    public static ResultSet databaseProtectedSelect(PreparedStatement preparedStatement) throws SQLException {
+    public ResultSet databaseProtectedSelect(PreparedStatement preparedStatement) throws SQLException {
         return preparedStatement.executeQuery();
     }
 }

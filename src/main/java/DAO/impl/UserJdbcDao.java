@@ -18,6 +18,12 @@ import java.util.List;
 import static DAO.DBConnector.*;
 
 public class UserJdbcDao implements IUserDao<User, Advertisement> {
+    private DBConnector dbConnector;
+
+    public UserJdbcDao(DBConnector dbConnector) {
+        this.dbConnector = dbConnector;
+    }
+
     private static final String DROP_TABLE = "DROP TABLE users;";
 
     private static final String CREATE_TABLE = "CREATE TABLE users " +
@@ -49,18 +55,18 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
     private static final String SELECT_USER_BY_ID = "SELECT firstname,lastname, email, password, role FROM users WHERE id = ? ";
 
 
-    public static boolean createUsersTable() throws IOException {
-        return query(CREATE_TABLE);
+    public boolean createUsersTable() throws IOException {
+        return dbConnector.query(CREATE_TABLE);
     }
 
-    public static boolean dropUsersTable() throws IOException {
-        return query(DROP_TABLE);
+    public boolean dropUsersTable() throws IOException {
+        return dbConnector.query(DROP_TABLE);
     }
 
     @Override
     public List<User> selectAll() throws SQLException, IOException {
-        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_ALL_USERS);
-        ResultSet rs = databaseProtectedSelect(preparedStatement);
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_ALL_USERS);
+        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
         List<User> users = new ArrayList<>();
         while (rs.next()) {
             User user = new User();
@@ -78,9 +84,9 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     @Override
     public User selectByID(int id) throws SQLException, IOException {
-        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_USER_BY_ID);
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_USER_BY_ID);
         preparedStatement.setInt(1, id);
-        ResultSet rs = databaseProtectedSelect(preparedStatement);
+        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
         User user = new User();
         if(rs.next()) {
             user.setId(id);
@@ -95,9 +101,9 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     @Override
     public boolean isEntityExistInDatabase(int id) throws SQLException, IOException {
-        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_IF_USER_EXIST);
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_IF_USER_EXIST);
         preparedStatement.setInt(1, id);
-        ResultSet rs = databaseProtectedSelect(preparedStatement);
+        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
         rs.next();
         return rs.getInt(1) != 0;
     }
@@ -105,43 +111,43 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     @Override
     public int insert(User user) throws SQLException, IOException {
-        try (PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(INSERT)) {
+        try (PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(INSERT)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, String.valueOf(user.getRole()));
-            return protectedQuery(preparedStatement);
+            return dbConnector.protectedQuery(preparedStatement);
         }
     }
 
     @Override
     public int update(User user) throws SQLException, IOException {
-        try (PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(UPDATE)) {
+        try (PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(UPDATE)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, String.valueOf(user.getRole()));
             preparedStatement.setInt(6, user.getId());
-            return protectedQuery(preparedStatement);
+            return dbConnector.protectedQuery(preparedStatement);
         }
     }
 
     @Override
     public User deleteByID(int id) throws SQLException, IOException {
         User user = selectByID(id);
-        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(DELETE);
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(DELETE);
         preparedStatement.setInt(1, id);
-        protectedQuery(preparedStatement);
+        dbConnector.protectedQuery(preparedStatement);
         return user;
     }
 
     @Override
     public List<Advertisement> selectAllAdvertisementByUserId(int id) throws SQLException, IOException {
-        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_ALL_USERS_ADVERTISEMENT);
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_ALL_USERS_ADVERTISEMENT);
         preparedStatement.setInt(1, id);
-        ResultSet rs = databaseProtectedSelect(preparedStatement);
+        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
         List<Advertisement> usersAdvertisement = new ArrayList<>();
         while (rs.next()) {
             Advertisement advertisement = new Advertisement();

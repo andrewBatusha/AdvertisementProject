@@ -7,7 +7,6 @@ import enums.Theme;
 import model.Advertisement;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,9 +14,12 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
-import static DAO.DBConnector.*;
-
 public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
+    private DBConnector dbConnector;
+
+    public AdvertisementJdbcDao(DBConnector dbConnector) {
+        this.dbConnector = dbConnector;
+    }
 
     private static final String DROP_TABLE = "DROP TABLE advertisement;";
 
@@ -52,19 +54,19 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
 
     private static final String SELECT_ADVERTISEMENT_BY_ID = "SELECT  headline, description, theme, email, phonenumber, status, visibility, id_user, date_published FROM advertisement WHERE id = ? ";
 
-    public static boolean createUsersTable() throws IOException {
-        return query(CREATE_TABLE);
+    public boolean createUsersTable() throws IOException {
+        return dbConnector.query(CREATE_TABLE);
     }
 
-    public static boolean dropUsersTable() throws IOException {
-        return query(DROP_TABLE);
+    public boolean dropUsersTable() throws IOException {
+        return dbConnector.query(DROP_TABLE);
     }
 
 
     @Override
     public List<Advertisement> selectAll() throws SQLException, IOException {
-        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_ALL_ADVERTISEMENT);
-        ResultSet rs = databaseProtectedSelect(preparedStatement);
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_ALL_ADVERTISEMENT);
+        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
         List<Advertisement> advertisements = new ArrayList<>();
         while (rs.next()) {
             Advertisement advertisement = new Advertisement();
@@ -85,11 +87,11 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
 
     @Override
     public Advertisement selectByID(int id) throws SQLException, IOException {
-        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_ADVERTISEMENT_BY_ID);
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_ADVERTISEMENT_BY_ID);
         preparedStatement.setInt(1, id);
-        ResultSet rs = databaseProtectedSelect(preparedStatement);
+        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
         Advertisement advertisement = new Advertisement();
-        if(rs.next()) {
+        if (rs.next()) {
             advertisement.setIdAdvertisement(id);
             advertisement.setHeadline(rs.getString("headline"));
             advertisement.setDescription(rs.getString("description"));
@@ -106,9 +108,9 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
 
     @Override
     public List<Advertisement> selectAllByTheme(Theme advertisementTheme) throws SQLException, IOException {
-        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_ADVERTISEMENT_BY_THEME);
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_ADVERTISEMENT_BY_THEME);
         preparedStatement.setString(1, String.valueOf(advertisementTheme));
-        ResultSet rs = databaseProtectedSelect(preparedStatement);
+        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
         List<Advertisement> advertisementsByTheme = new ArrayList<>();
         while (rs.next()) {
             Advertisement advertisement = new Advertisement();
@@ -130,7 +132,7 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
 
     @Override
     public int insert(Advertisement entity) throws SQLException, IOException {
-        try (PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(INSERT)) {
+        try (PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(INSERT)) {
             preparedStatement.setString(1, entity.getHeadline());
             preparedStatement.setString(2, entity.getDescription());
             preparedStatement.setString(3, String.valueOf(entity.getTheme()));
@@ -140,22 +142,22 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             preparedStatement.setInt(7, entity.isVisibility() ? 1 : 0);
             preparedStatement.setInt(8, entity.getIdUser());
             preparedStatement.setDate(9, java.sql.Date.valueOf(entity.getDateOfPublished().toLocalDate()));
-            return protectedQuery(preparedStatement);
+            return dbConnector.protectedQuery(preparedStatement);
         }
     }
 
     @Override
     public Advertisement deleteByID(int id) throws SQLException, IOException {
         Advertisement adv = selectByID(id);
-        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(DELETE);
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(DELETE);
         preparedStatement.setInt(1, id);
-        protectedQuery(preparedStatement);
+        dbConnector.protectedQuery(preparedStatement);
         return adv;
     }
 
     @Override
     public int update(Advertisement entity) throws SQLException, IOException {
-        try (PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(UPDATE)) {
+        try (PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(UPDATE)) {
             preparedStatement.setString(1, entity.getHeadline());
             preparedStatement.setString(2, entity.getDescription());
             preparedStatement.setString(3, String.valueOf(entity.getTheme()));
@@ -165,17 +167,16 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             preparedStatement.setInt(7, entity.isVisibility() ? 1 : 0);
             preparedStatement.setInt(8, entity.getIdUser());
             preparedStatement.setDate(9, java.sql.Date.valueOf(entity.getDateOfPublished().toLocalDate()));
-            return protectedQuery(preparedStatement);
+            return dbConnector.protectedQuery(preparedStatement);
         }
     }
 
     @Override
     public boolean isEntityExistInDatabase(int id) throws SQLException, IOException {
-        PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_IF_ADVERTISEMENT_EXIST);
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_IF_ADVERTISEMENT_EXIST);
         preparedStatement.setInt(1, id);
-        ResultSet rs = databaseProtectedSelect(preparedStatement);
+        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
         rs.next();
-
         return rs.getInt(1) != 0;
     }
 }
