@@ -6,28 +6,23 @@ import model.Advertisement;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class AdvertisementServiceTest {
+import java.time.LocalDateTime;
 
+public class AdvertisementServiceTest {
+    Advertisement adv = new Advertisement(1, "lol", "kek", "3030", "lol", Theme.HOBBY, Status.WAITING, false, 3, LocalDateTime.now());
     @Test
     public void addAdvertisement() throws  Exception{
-        Advertisement adv = new Advertisement(5,"testhead","testdesc", "testMail","testNumber", Theme.ART, Status.WAITING,false,5);
-        AdvertisementService.addAdvertisement(adv);
+        Assert.assertEquals(AdvertisementService.addAdvertisement(adv), true);
     }
 
     @Test
     public void deleteAdvertisement() throws Exception{
-        AdvertisementService.deleteAdvertisement(22);
+        Assert.assertEquals(AdvertisementService.deleteAdvertisement(22),true);
     }
 
     @Test
     public void changeAdvertisementStatus() throws Exception{
-        Advertisement adv = new Advertisement(5,"testhead","testdesc", "testMail","testNumber", Theme.ART, Status.WAITING,false,5);
-        //Assert.assertEquals(adv.getStatus(), Status.WAITING);
-        AdvertisementService.changeAdvertisementStatus(adv, Status.APPROVED);
-        Assert.assertEquals(AdvertisementService.getUser(5).getStatus(), Status.APPROVED);
-
-
-
+        Assert.assertEquals(AdvertisementService.changeAdvertisementStatus(adv, Status.APPROVED),true);
     }
 
 }

@@ -31,9 +31,17 @@ M
 src/main/java/model/User.java,8\e\8e1ebf0166aec1f7f81589f5763cf23a86e9c01e
 c
 3src/test/java/service/AdvertisementServiceTest.java,4\6\4658700e0fc3ffe42eb2ac0a82bbb70042e47e0c
-U
-%src/main/java/servlet/JDBCFilter.java,9\5\95436b333f3920cc322f0c5dd1f267e08308797d
 W
 'src/main/java/DAO/impl/UserJdbcDao.java,e\f\efd915b985479da95dd3ebd0bf28705d2570afec
 `
 0src/main/java/DAO/impl/AdvertisementJdbcDao.java,2\c\2ca46290582a35ccac39644c5c6586bdda59837b
+O
+src/main/java/DAO/IUserDao.java,c\b\cb36d0a109c38d7415f9290f89c720b5324d1dfc
+[
++.idea/libraries/Maven__junit_junit_4_12.xml,a\f\afa6ca72908af2e838d0cb108eb24f143bc62da7
+i
+9.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml,b\8\b8d96649614bd84192f3496ef7d33bab1d1e5ec1
+T
+$src/main/resources/dbtest.properties,8\6\86a2b0213c7b4904c9a78553de5e51e0a964ae50
+S
+#src/main/resources/log4j.properties,7\5\755950bb690295904a49d36e60958901c54013b8

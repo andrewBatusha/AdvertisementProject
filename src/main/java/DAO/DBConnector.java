@@ -9,16 +9,13 @@ import java.util.PropertyResourceBundle;
 import static java.util.ResourceBundle.getBundle;
 
 public class DBConnector {
+
     final static Logger logger = Logger.getLogger(DBConnector.class);
-
-
-
 
     public static Connection connect() throws IOException {
         Connection conn = null;
-        Statement stmt = null;
         try {
-            PropertyResourceBundle resourceBundle = (PropertyResourceBundle) getBundle("db");
+            PropertyResourceBundle resourceBundle = (PropertyResourceBundle) getBundle("dbtest");
             Class.forName(resourceBundle.getString("driver"));
             String url = resourceBundle.getString("url");
             String user = resourceBundle.getString("user");
@@ -59,6 +56,4 @@ public class DBConnector {
     public static ResultSet databaseProtectedSelect(PreparedStatement preparedStatement) throws SQLException {
         return preparedStatement.executeQuery();
     }
-
 }
-

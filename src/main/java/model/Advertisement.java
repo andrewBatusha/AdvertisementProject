@@ -5,6 +5,7 @@ import enums.Status;
 import enums.Theme;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Advertisement {
     private int idAdvertisement;
@@ -16,17 +17,17 @@ public class Advertisement {
     private Status status = Status.WAITING;
     private boolean visibility = false;
     private int idUser;
-    private LocalDate dateOfPublished;
+    private LocalDateTime dateOfPublished;
 
 
     public Advertisement() {
     }
 
-    public LocalDate getDateOfPublished() {
+    public LocalDateTime getDateOfPublished() {
         return dateOfPublished;
     }
 
-    public void setDateOfPublished(LocalDate dateOfPublished) {
+    public void setDateOfPublished(LocalDateTime dateOfPublished) {
         this.dateOfPublished = dateOfPublished;
     }
 
@@ -42,11 +43,11 @@ public class Advertisement {
                 ", status=" + status +
                 ", visibility=" + visibility +
                 ", idUser=" + idUser +
+                ", dateOfPublished=" + dateOfPublished +
                 '}';
     }
 
-
-    public Advertisement(int idAdvertisement, String headline, String description, String mail, String number, Theme theme, Status status, boolean visibility, int idUser, LocalDate dateOfPublished) {
+    public Advertisement(int idAdvertisement, String headline, String description, String mail, String number, Theme theme, Status status, boolean visibility, int idUser, LocalDateTime dateOfPublished) {
         this.idAdvertisement = idAdvertisement;
         this.headline = headline;
         this.description = description;

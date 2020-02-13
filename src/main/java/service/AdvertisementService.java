@@ -13,25 +13,28 @@ import java.util.List;
 public class AdvertisementService {
     private static IAdvertisementDao<Advertisement> advertisementJdbcDao = new AdvertisementJdbcDao();
 
-    public static void addAdvertisement(Advertisement advertisement) throws SQLException, IOException {
+    public static boolean addAdvertisement(Advertisement advertisement) throws SQLException, IOException {
         if(!advertisementJdbcDao.isEntityExistInDatabase(advertisement.getIdAdvertisement()))
             advertisementJdbcDao.insert(advertisement);
+        return true;
     }
 
-    public static void deleteAdvertisement(int id) throws SQLException, IOException {
+    public static boolean deleteAdvertisement(int id) throws SQLException, IOException {
         if(advertisementJdbcDao.isEntityExistInDatabase(id))
             advertisementJdbcDao.deleteByID(id);
+        return true;
     }
 
-    public static void changeAdvertisementStatus(Advertisement advertisement, Status status) throws SQLException, IOException {
+    public static boolean changeAdvertisementStatus(Advertisement advertisement, Status status) throws SQLException, IOException {
         advertisement.setStatus(status);
         advertisementJdbcDao.update(advertisement);
+        return true;
     }
     public static List<Advertisement> getAllAdvertisements() throws SQLException, IOException {
         return advertisementJdbcDao.selectAll();
     }
 
-    public static Advertisement getUser(int id) throws SQLException, IOException{
+    public static Advertisement getAdvertisement(int id) throws SQLException, IOException{
         return advertisementJdbcDao.selectByID(id);
     }
 

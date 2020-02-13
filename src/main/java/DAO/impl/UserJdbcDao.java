@@ -46,7 +46,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             " FROM Advertisement " +
             "Where id_user = ?;";
 
-    private static final String SELECT_USER_BY_ID = "SELECT id, firstname,lastname, email, password, role FROM users WHERE id = ? ";
+    private static final String SELECT_USER_BY_ID = "SELECT firstname,lastname, email, password, role FROM users WHERE id = ? ";
 
 
     public static boolean createUsersTable() throws IOException {
@@ -81,14 +81,15 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
         PreparedStatement preparedStatement = DBConnector.connect().prepareStatement(SELECT_USER_BY_ID);
         preparedStatement.setInt(1, id);
         ResultSet rs = databaseProtectedSelect(preparedStatement);
-        rs.next();
         User user = new User();
-        user.setId(rs.getInt("id"));
-        user.setName(rs.getString("firstname"));
-        user.setSurname(rs.getString("lastname"));
-        user.setEmail(rs.getString("email"));
-        user.setPassword(rs.getString("password"));
-        user.setRole(Role.valueOf(rs.getString("role")));
+        if(rs.next()) {
+            user.setId(id);
+            user.setName(rs.getString("firstname"));
+            user.setSurname(rs.getString("lastname"));
+            user.setEmail(rs.getString("email"));
+            user.setPassword(rs.getString("password"));
+            user.setRole(Role.valueOf(rs.getString("role")));
+        }
         return user;
     }
 
