@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="WebAdvertisementProject" />
+        <module name="LHAdvertisementProject" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="WebAdvertisementProject" target="8" />
+      <module name="LHAdvertisementProject" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

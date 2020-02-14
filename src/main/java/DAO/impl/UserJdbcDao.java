@@ -20,7 +20,7 @@ import static DAO.DBConnector.*;
 public class UserJdbcDao implements IUserDao<User, Advertisement> {
     private DBConnector dbConnector;
 
-    public UserJdbcDao(DBConnector dbConnector) {
+    public UserJdbcDao(DBConnector dbConnector){
         this.dbConnector = dbConnector;
     }
 

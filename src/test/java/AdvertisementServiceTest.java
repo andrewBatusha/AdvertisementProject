@@ -1,5 +1,3 @@
-package service;
-
 import DAO.impl.AdvertisementJdbcDao;
 import DAO.impl.DBTestConnector;
 import enums.Status;
@@ -7,6 +5,7 @@ import enums.Theme;
 import model.Advertisement;
 import org.junit.Assert;
 import org.junit.Test;
+import service.AdvertisementService;
 
 import java.time.LocalDateTime;
 

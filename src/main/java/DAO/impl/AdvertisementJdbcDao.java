@@ -54,11 +54,11 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
 
     private static final String SELECT_ADVERTISEMENT_BY_ID = "SELECT  headline, description, theme, email, phonenumber, status, visibility, id_user, date_published FROM advertisement WHERE id = ? ";
 
-    public boolean createUsersTable() throws IOException {
+    public boolean createAdvertisementTable() throws IOException {
         return dbConnector.query(CREATE_TABLE);
     }
 
-    public boolean dropUsersTable() throws IOException {
+    public boolean dropAdvertisementTable() throws IOException {
         return dbConnector.query(DROP_TABLE);
     }
 

@@ -1,11 +1,10 @@
-package service;
-
 import DAO.impl.DBTestConnector;
 import DAO.impl.UserJdbcDao;
 import enums.Role;
 import model.User;
 import org.junit.Assert;
 import org.junit.Test;
+import service.UserService;
 
 public class UserServiceTest {
     User user = new User(32, "andrew", "batuiev", "@gmail.com", "password", Role.ADMIN, null);

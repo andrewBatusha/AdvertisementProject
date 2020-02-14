@@ -2,7 +2,6 @@ package DAO;
 
 import org.apache.log4j.Logger;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.PropertyResourceBundle;
 
@@ -28,7 +27,7 @@ public class DBConnector {
             conn = DriverManager.getConnection(url, user, pass);
 
         } catch (SQLException | ClassNotFoundException ex) {
-            logger.error("cannot connected to bd");
+            logger.error("cannot connected to bd",ex);
         }
         return conn;
     }
