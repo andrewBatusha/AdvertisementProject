@@ -170,13 +170,4 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             return dbConnector.protectedQuery(preparedStatement);
         }
     }
-
-    @Override
-    public boolean isEntityExistInDatabase(int id) throws SQLException, IOException {
-        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_IF_ADVERTISEMENT_EXIST);
-        preparedStatement.setInt(1, id);
-        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
-        rs.next();
-        return rs.getInt(1) != 0;
-    }
 }

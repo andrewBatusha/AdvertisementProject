@@ -48,4 +48,16 @@ public class UserService {
     public List<Advertisement> getMyAdvertisement(User user) throws SQLException, IOException {
         return userJdbcDao.selectAllAdvertisementByUserId(user.getId());
     }
+
+    public boolean isUserAuthorized(String email, String password){
+        boolean f = false;
+        try {
+            f = userJdbcDao.isEntityExistInDatabase(email,password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
 }

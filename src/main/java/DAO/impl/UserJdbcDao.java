@@ -46,7 +46,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     private static final String SELECT_ALL_USERS = "SELECT * FROM  users ORDER BY id;";
 
-    private static final String SELECT_IF_USER_EXIST = "SELECT COUNT(*) FROM users WHERE id = ? ;";
+    private static final String SELECT_IF_USER_EXIST = "SELECT COUNT(*) FROM users WHERE email = ? and password = ?;";
 
     private static final String SELECT_ALL_USERS_ADVERTISEMENT = "SELECT  Advertisement.id, headline, description, theme, email, phonenumber, status, visibility" +
             " FROM Advertisement " +
@@ -116,10 +116,11 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
         return user;
     }
 
-    @Override
-    public boolean isEntityExistInDatabase(int id) throws SQLException, IOException {
+
+    public boolean isEntityExistInDatabase(String email, String password) throws SQLException, IOException {
         PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_IF_USER_EXIST);
-        preparedStatement.setInt(1, id);
+        preparedStatement.setString(1, email);
+        preparedStatement.setString(2, password);
         ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
         rs.next();
         return rs.getInt(1) != 0;

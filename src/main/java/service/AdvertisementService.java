@@ -17,13 +17,11 @@ public class AdvertisementService {
     }
 
     public boolean addAdvertisement(Advertisement advertisement) throws SQLException, IOException {
-        if (!advertisementJdbcDao.isEntityExistInDatabase(advertisement.getIdAdvertisement()))
             advertisementJdbcDao.insert(advertisement);
         return true;
     }
 
     public boolean deleteAdvertisement(int id) throws SQLException, IOException {
-        if (advertisementJdbcDao.isEntityExistInDatabase(id))
             advertisementJdbcDao.deleteByID(id);
         return true;
     }
