@@ -60,4 +60,17 @@ public class DBConnector {
     public ResultSet databaseProtectedSelect(PreparedStatement preparedStatement) throws SQLException {
         return preparedStatement.executeQuery();
     }
+
+    public static void rollbackQuietly(Connection conn) {
+        try {
+            conn.rollback();
+        } catch (Exception e) {
+        }
+    }
+    public static void closeQuietly(Connection conn) {
+        try {
+            conn.close();
+        } catch (Exception e) {
+        }
+    }
 }

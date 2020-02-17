@@ -6,6 +6,7 @@ import model.Advertisement;
 import model.User;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,6 +15,10 @@ public class UserService {
 
     public UserService(IUserDao<User, Advertisement> userJdbcDao) {
         this.userJdbcDao = userJdbcDao;
+    }
+
+    public User getUserByEmail(String email) throws IOException, SQLException {
+        return userJdbcDao.selectByEmail(email);
     }
 
     public boolean addUser(User user) throws SQLException, IOException {

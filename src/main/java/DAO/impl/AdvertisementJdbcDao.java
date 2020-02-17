@@ -32,9 +32,9 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             "phonenumber VARCHAR (30)," +
             "status VARCHAR (30)," +
             "visibility INT," +
-            "date_published date," +
+            "date_published TIMESTAMP," +
             "id_user int," +
-            "FOREIGN KEY (id_user) REFERENCES User (Id));";
+            "FOREIGN KEY (id_user) REFERENCES Users (Id));";
 
     private static final String INSERT = "INSERT INTO advertisement( headline, description, theme, email, phonenumber, status, visibility, id_user, date_published) " +
             "VALUES ( ? , ? , ?, ?, ? , ?, ?, ?, ?);";

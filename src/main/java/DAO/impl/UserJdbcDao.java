@@ -32,7 +32,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             "lastname VARCHAR (30)," +
             "email VARCHAR (30)," +
             "password VARCHAR (30)," +
-            "role VARCHAR (30);";
+            "role VARCHAR (30);)";
 
     private static final String INSERT = "INSERT INTO users(firstname, lastname, email, password, role) " +
             "VALUES ( ? , ? , ?, ?, ? );";
@@ -54,7 +54,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     private static final String SELECT_USER_BY_ID = "SELECT firstname,lastname, email, password, role FROM users WHERE id = ? ";
 
-
+    private static final String SELECT_USER_BY_EMAIL = "SELECT firstname,lastname, email, password, role FROM users WHERE email = ?";
     public boolean createUsersTable() throws IOException {
         return dbConnector.query(CREATE_TABLE);
     }
@@ -93,6 +93,23 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             user.setName(rs.getString("firstname"));
             user.setSurname(rs.getString("lastname"));
             user.setEmail(rs.getString("email"));
+            user.setPassword(rs.getString("password"));
+            user.setRole(Role.valueOf(rs.getString("role")));
+        }
+        return user;
+    }
+
+    @Override
+    public User selectByEmail(String email) throws SQLException, IOException {
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_USER_BY_ID);
+        preparedStatement.setString(1, email);
+        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
+        User user = new User();
+        if(rs.next()) {
+            user.setId(rs.getInt("id"));
+            user.setEmail(email);
+            user.setName(rs.getString("firstname"));
+            user.setSurname(rs.getString("lastname"));
             user.setPassword(rs.getString("password"));
             user.setRole(Role.valueOf(rs.getString("role")));
         }
