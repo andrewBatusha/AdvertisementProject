@@ -13,7 +13,6 @@ public class User {
     private String email;
     private String password;
     private Role role;
-    List<Advertisement> advertisements;
 
     public User() {
     }
@@ -27,18 +26,16 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
-                ", advertisements=" + advertisements +
                 '}';
     }
 
-    public User(int id, String name, String surname, String email, String password, Role role, List<Advertisement> advertisements) {
+    public User(int id, String name, String surname, String email, String password, Role role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.role = role;
-        this.advertisements = advertisements;
     }
 
     public int getId() {
@@ -89,15 +86,5 @@ public class User {
         this.role = role;
     }
 
-    public List<Advertisement> getAdvertisements() {
-        return advertisements;
-    }
 
-    public void setAdvertisements(List<Advertisement> advertisements) throws NullPointerException {
-        if (advertisements == null) {
-            this.advertisements = advertisements;
-        } else {
-            throw new NullPointerException();
-        }
-    }
 }

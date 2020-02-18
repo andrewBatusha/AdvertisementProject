@@ -7,7 +7,7 @@ import org.junit.Test;
 import service.UserService;
 
 public class UserServiceTest {
-    User user = new User(32, "andrew", "batuiev", "@gmail.com", "password", Role.ADMIN, null);
+    User user = new User(32, "andrew", "batuiev", "@gmail.com", "password", Role.ADMIN);
 
     UserService userService = new UserService(new UserJdbcDao(new DBTestConnector()));
     

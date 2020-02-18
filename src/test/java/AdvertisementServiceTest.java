@@ -10,7 +10,7 @@ import service.AdvertisementService;
 import java.time.LocalDateTime;
 
 public class AdvertisementServiceTest {
-    Advertisement adv = new Advertisement(1, "lol", "kek", "3030", "lol", Theme.HOBBY, Status.WAITING, false, 3, LocalDateTime.now());
+    Advertisement adv = new Advertisement(1, "lol", "kek", "3030", "lol", Theme.HOBBY, false, 56, LocalDateTime.now());
     AdvertisementService advertisementService = new AdvertisementService(new AdvertisementJdbcDao(new DBTestConnector()));
     @Test
     public void addAdvertisement() throws  Exception{

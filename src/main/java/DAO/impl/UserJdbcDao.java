@@ -48,13 +48,13 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     private static final String SELECT_IF_USER_EXIST = "SELECT COUNT(*) FROM users WHERE email = ? and password = ?;";
 
-    private static final String SELECT_ALL_USERS_ADVERTISEMENT = "SELECT  Advertisement.id, headline, description, theme, email, phonenumber, status, visibility" +
+    private static final String SELECT_ALL_USERS_ADVERTISEMENT = "SELECT  Advertisement.id, headline, description, theme, email, phonenumber, status, visibility, id_user" +
             " FROM Advertisement " +
             "Where id_user = ?;";
 
     private static final String SELECT_USER_BY_ID = "SELECT firstname,lastname, email, password, role FROM users WHERE id = ? ";
 
-    private static final String SELECT_USER_BY_EMAIL = "SELECT firstname,lastname, email, password, role FROM users WHERE email = ?";
+    private static final String SELECT_USER_BY_EMAIL = "SELECT id, firstname,lastname, password, role FROM users WHERE email = ?";
     public boolean createUsersTable() throws IOException {
         return dbConnector.query(CREATE_TABLE);
     }
@@ -101,7 +101,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     @Override
     public User selectByEmail(String email) throws SQLException, IOException {
-        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_USER_BY_ID);
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_USER_BY_EMAIL);
         preparedStatement.setString(1, email);
         ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
         User user = new User();

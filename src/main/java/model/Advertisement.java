@@ -47,14 +47,13 @@ public class Advertisement {
                 '}';
     }
 
-    public Advertisement(int idAdvertisement, String headline, String description, String mail, String number, Theme theme, Status status, boolean visibility, int idUser, LocalDateTime dateOfPublished) {
+    public Advertisement(int idAdvertisement, String headline, String description, String mail, String number, Theme theme, boolean visibility, int idUser, LocalDateTime dateOfPublished) {
         this.idAdvertisement = idAdvertisement;
         this.headline = headline;
         this.description = description;
         this.mail = mail;
         this.number = number;
         this.theme = theme;
-        this.status = status;
         this.visibility = visibility;
         this.idUser = idUser;
         this.dateOfPublished = dateOfPublished;
