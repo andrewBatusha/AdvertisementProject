@@ -52,7 +52,16 @@ public class UserService {
     public boolean isUserAuthorized(String email, String password){
         boolean f = false;
         try {
-            f = userJdbcDao.isEntityExistInDatabase(email,password);
+            f = userJdbcDao.isUserAuthorizedSuccessfully(email,password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
+    public boolean isUserExist(String email){
+        boolean f = false;
+        try {
+            f = userJdbcDao.isUserExistInDatabase(email);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {

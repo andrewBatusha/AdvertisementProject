@@ -1,4 +1,4 @@
-package servlet.authorization;
+package servlet.registration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/loginPage")
-public class LoginPage extends HttpServlet {
+@WebServlet(urlPatterns = "/registerPage")
+public class RegisterPage extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            request.getRequestDispatcher("view/authorization/login.jsp").forward(request, response);
+        request.getRequestDispatcher("view/registration/register.jsp").forward(request, response);
     }
 }
