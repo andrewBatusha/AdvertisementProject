@@ -50,9 +50,10 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     private static final String SELECT_IF_USER_EXIST = "SELECT COUNT(*) FROM users WHERE email = ?";
 
-    private static final String SELECT_ALL_USERS_ADVERTISEMENT = "SELECT  Advertisement.id, headline, description, theme, email, phonenumber, status, visibility, id_user" +
+    private static final String SELECT_ALL_USERS_ADVERTISEMENT = "SELECT  Advertisement.id, headline, description, theme, phonenumber, status, id_user" +
             " FROM Advertisement " +
             "Where id_user = ?;";
+
 
     private static final String SELECT_USER_BY_ID = "SELECT firstname,lastname, email, password, role FROM users WHERE id = ? ";
 
@@ -184,10 +185,8 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             advertisement.setHeadline(rs.getString("headline"));
             advertisement.setDescription(rs.getString("description"));
             advertisement.setTheme(Theme.valueOf(rs.getString("theme")));
-            advertisement.setMail(rs.getString("email"));
             advertisement.setNumber(rs.getString("phonenumber"));
             advertisement.setStatus(Status.valueOf(rs.getString("status")));
-            advertisement.setVisibility(rs.getInt("visibility") > 0);
             advertisement.setIdUser(rs.getInt("id_user"));
             usersAdvertisement.add(advertisement);
         }

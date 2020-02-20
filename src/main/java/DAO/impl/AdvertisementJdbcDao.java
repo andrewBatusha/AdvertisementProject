@@ -7,10 +7,9 @@ import enums.Theme;
 import model.Advertisement;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,20 +27,18 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             "headline VARCHAR(30)," +
             "description VARCHAR (300)," +
             "theme VARCHAR (30)," +
-            "email VARCHAR (30)," +
             "phonenumber VARCHAR (30)," +
             "status VARCHAR (30)," +
-            "visibility INT," +
             "date_published TIMESTAMP," +
             "id_user int," +
             "FOREIGN KEY (id_user) REFERENCES Users (Id));";
 
-    private static final String INSERT = "INSERT INTO advertisement( headline, description, theme, email, phonenumber, status, visibility, id_user, date_published) " +
-            "VALUES ( ? , ? , ?, ?, ? , ?, ?, ?, ?);";
+    private static final String INSERT = "INSERT INTO advertisement( headline, description, theme, phonenumber, status, id_user, date_published) " +
+            "VALUES ( ? , ? , ?, ?, ? , ?, ?);";
 
     private static final String UPDATE = "UPDATE advertisement " +
             "SET headline = ? , description = ? , " +
-            " theme = ?, email = ?, phonenumber = ?, status = ?, visibility = ?, id_user = ?, date_published WHERE id = ?;";
+            " theme = ?, phonenumber = ?, status = ?, id_user = ?, date_published WHERE id = ?;";
 
     private static final String DELETE = "DELETE FROM advertisement " +
             "WHERE id = ?;";
@@ -52,7 +49,7 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
 
     private static final String SELECT_ADVERTISEMENT_BY_THEME = "SELECT * FROM advertisement WHERE theme = ?;";
 
-    private static final String SELECT_ADVERTISEMENT_BY_ID = "SELECT  headline, description, theme, email, phonenumber, status, visibility, id_user, date_published FROM advertisement WHERE id = ? ";
+    private static final String SELECT_ADVERTISEMENT_BY_ID = "SELECT  headline, description, theme, phonenumber, status, id_user, date_published FROM advertisement WHERE id = ? ";
 
     public boolean createAdvertisementTable() throws IOException {
         return dbConnector.query(CREATE_TABLE);
@@ -74,10 +71,8 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             advertisement.setHeadline(rs.getString("headline"));
             advertisement.setDescription(rs.getString("description"));
             advertisement.setTheme(Theme.valueOf(rs.getString("theme")));
-            advertisement.setMail(rs.getString("email"));
             advertisement.setNumber(rs.getString("phonenumber"));
             advertisement.setStatus(Status.valueOf(rs.getString("status")));
-            advertisement.setVisibility(rs.getInt("visibility") > 0);
             advertisement.setIdUser(rs.getInt("id_user"));
             advertisement.setDateOfPublished(rs.getTimestamp("date_published").toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
             advertisements.add(advertisement);
@@ -96,10 +91,8 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             advertisement.setHeadline(rs.getString("headline"));
             advertisement.setDescription(rs.getString("description"));
             advertisement.setTheme(Theme.valueOf(rs.getString("theme")));
-            advertisement.setMail(rs.getString("email"));
             advertisement.setNumber(rs.getString("phonenumber"));
             advertisement.setStatus(Status.valueOf(rs.getString("status")));
-            advertisement.setVisibility(rs.getInt("visibility") > 0);
             advertisement.setIdUser(rs.getInt("id_user"));
             advertisement.setDateOfPublished(rs.getTimestamp("date_published").toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
         }
@@ -118,10 +111,8 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             advertisement.setHeadline(rs.getString("headline"));
             advertisement.setDescription(rs.getString("description"));
             advertisement.setTheme(Theme.valueOf(rs.getString("theme")));
-            advertisement.setMail(rs.getString("email"));
             advertisement.setNumber(rs.getString("phonenumber"));
             advertisement.setStatus(Status.valueOf(rs.getString("status")));
-            advertisement.setVisibility(rs.getInt("visibility") > 0);
             advertisement.setIdUser(rs.getInt("id_user"));
             advertisement.setDateOfPublished(rs.getDate("date_published").toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
             advertisementsByTheme.add(advertisement);
@@ -136,12 +127,10 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             preparedStatement.setString(1, entity.getHeadline());
             preparedStatement.setString(2, entity.getDescription());
             preparedStatement.setString(3, String.valueOf(entity.getTheme()));
-            preparedStatement.setString(4, entity.getMail());
-            preparedStatement.setString(5, entity.getNumber());
-            preparedStatement.setString(6, String.valueOf(entity.getStatus()));
-            preparedStatement.setInt(7, entity.isVisibility() ? 1 : 0);
-            preparedStatement.setInt(8, entity.getIdUser());
-            preparedStatement.setDate(9, java.sql.Date.valueOf(entity.getDateOfPublished().toLocalDate()));
+            preparedStatement.setString(4, entity.getNumber());
+            preparedStatement.setString(5, String.valueOf(entity.getStatus()));
+            preparedStatement.setInt(6, entity.getIdUser());
+            preparedStatement.setTimestamp(7, (Timestamp.valueOf(entity.getDateOfPublished())));
             return dbConnector.protectedQuery(preparedStatement);
         }
     }
@@ -161,12 +150,10 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             preparedStatement.setString(1, entity.getHeadline());
             preparedStatement.setString(2, entity.getDescription());
             preparedStatement.setString(3, String.valueOf(entity.getTheme()));
-            preparedStatement.setString(4, entity.getMail());
             preparedStatement.setString(5, entity.getNumber());
             preparedStatement.setString(6, String.valueOf(entity.getStatus()));
-            preparedStatement.setInt(7, entity.isVisibility() ? 1 : 0);
-            preparedStatement.setInt(8, entity.getIdUser());
-            preparedStatement.setDate(9, java.sql.Date.valueOf(entity.getDateOfPublished().toLocalDate()));
+            preparedStatement.setInt(7, entity.getIdUser());
+            preparedStatement.setDate(8, java.sql.Date.valueOf(entity.getDateOfPublished().toLocalDate()));
             return dbConnector.protectedQuery(preparedStatement);
         }
     }

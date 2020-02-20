@@ -19,10 +19,22 @@ import java.util.List;
 @WebServlet(urlPatterns = "/myAdvertisement")
 public class MyAdvertisement extends HttpServlet {
     UserService userService = new UserService(new UserJdbcDao(new DBWorkConnector()));
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Advertisement> advertisements = null;
+        HttpSession session = request.getSession();
+        try {
+            advertisements = userService.getMyAdvertisement(userService.getUserByEmail((String)session.getAttribute("user")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        request.setAttribute("advertisements", advertisements);
+        request.getRequestDispatcher("view/authorization/myAdvertisement.jsp").forward(request,response);
+    }
+
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Advertisement> advertisements = null;
         try {
-            HttpSession session = request.getSession();
            advertisements = userService.getMyAdvertisement(userService.getUserByEmail(request.getParameter("user")));
         } catch (SQLException e) {
             e.printStackTrace();

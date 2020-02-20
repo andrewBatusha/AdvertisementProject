@@ -4,18 +4,15 @@ package model;
 import enums.Status;
 import enums.Theme;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Advertisement {
     private int idAdvertisement;
     private String headline;
     private String description;
-    private String mail;
     private String number;
     private Theme theme;
-    private Status status = Status.WAITING;
-    private boolean visibility = false;
+    private Status status = Status.APPROVED;
     private int idUser;
     private LocalDateTime dateOfPublished;
 
@@ -37,24 +34,20 @@ public class Advertisement {
                 "idAdvertisement=" + idAdvertisement +
                 ", headline='" + headline + '\'' +
                 ", description='" + description + '\'' +
-                ", mail='" + mail + '\'' +
                 ", number='" + number + '\'' +
                 ", theme=" + theme +
                 ", status=" + status +
-                ", visibility=" + visibility +
                 ", idUser=" + idUser +
                 ", dateOfPublished=" + dateOfPublished +
                 '}';
     }
 
-    public Advertisement(int idAdvertisement, String headline, String description, String mail, String number, Theme theme, boolean visibility, int idUser, LocalDateTime dateOfPublished) {
+    public Advertisement(int idAdvertisement, String headline, String description, String number, Theme theme, int idUser, LocalDateTime dateOfPublished) {
         this.idAdvertisement = idAdvertisement;
         this.headline = headline;
         this.description = description;
-        this.mail = mail;
         this.number = number;
         this.theme = theme;
-        this.visibility = visibility;
         this.idUser = idUser;
         this.dateOfPublished = dateOfPublished;
     }
@@ -83,14 +76,6 @@ public class Advertisement {
         this.description = description;
     }
 
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
     public String getNumber() {
         return number;
     }
@@ -113,14 +98,6 @@ public class Advertisement {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public boolean isVisibility() {
-        return visibility;
-    }
-
-    public void setVisibility(boolean visibility) {
-        this.visibility = visibility;
     }
 
     public int getIdUser() {

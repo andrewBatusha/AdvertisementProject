@@ -17,8 +17,16 @@ public class UserService {
         this.userJdbcDao = userJdbcDao;
     }
 
-    public User getUserByEmail(String email) throws IOException, SQLException {
-        return userJdbcDao.selectByEmail(email);
+    public User getUserByEmail(String email) {
+        User user = null;
+        try {
+            user = userJdbcDao.selectByEmail(email);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     public boolean addUser(User user) throws SQLException, IOException {

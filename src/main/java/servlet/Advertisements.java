@@ -21,12 +21,8 @@ public class Advertisements extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
             List<Advertisement> advertisements = advertisementService.getAllAdvertisements();
             request.setAttribute("advertisements", advertisements);
             request.getRequestDispatcher("view/advertisements/advertisement.jsp").forward(request,response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }

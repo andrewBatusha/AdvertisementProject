@@ -20,7 +20,7 @@ import model.User;
 import service.UserService;
 import servlet.MyUtils;
 
-@WebFilter(filterName = "cookieFilter", urlPatterns = { "/*" })
+@WebFilter(filterName = "cookieFilter", urlPatterns = {"/*"})
 public class CookieFilter implements Filter {
     UserService userService = new UserService(new UserJdbcDao(new DBWorkConnector()));
 
@@ -58,12 +58,8 @@ public class CookieFilter implements Filter {
         String checked = (String) session.getAttribute("COOKIE_CHECKED");
         if (checked == null && conn != null) {
             String Email = MyUtils.getUserNameInCookie(req);
-            try {
-                User user = userService.getUserByEmail(Email);
-                MyUtils.storeLoginedUser(session, user);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            User user = userService.getUserByEmail(Email);
+            MyUtils.storeLoginedUser(session, user);
             // Отметить проверенные Cookie.
             session.setAttribute("COOKIE_CHECKED", "CHECKED");
         }
