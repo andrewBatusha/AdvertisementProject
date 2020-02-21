@@ -16,7 +16,7 @@
 <div class="jumbotron d-flex align-items-center ">
     <div class="container-fluid">
         <c:set var="Approved" value="<%=Status.APPROVED%>"/>
-        <c:forEach var="adv" items="${advertisements}">
+        <c:forEach var="adv" items="${advertisements}" varStatus="loop" >
             <c:if test="${adv.status == Approved}">
                 <div class="card text-white bg-primary mb-3" style="max-width: 40rem;">
                     <div class="card-header"><c:out value="${adv.theme}"/><p></div>
@@ -24,13 +24,15 @@
                         <h4 class="card-title"><c:out value="${adv.headline}"/></h4>
                         <p class="card-text"><c:out value="${adv.description}"/></p>
                     </div>
-                    <div class="card-footer"><c:out value="${adv.dateOfPublished}"/><p></div>
+                    <div class="card-footer"><c:out value="${dateOfPublishing.get(loop.index)}"/><p></div>
                 </div>
             </c:if>
         </c:forEach>
     </div>
+    <c:if test="${!empty sessionScope.user}">
     <button type="button" class="btn btn-success btn-lg pull-right"><a href="${pageContext.request.contextPath}/CreatingPage"><span
             class="fas fa-clipboard-list"></span> add Advertisement</a></button>
+    </c:if>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

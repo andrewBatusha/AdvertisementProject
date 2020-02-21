@@ -20,14 +20,6 @@ public class Advertisement {
     public Advertisement() {
     }
 
-    public LocalDateTime getDateOfPublished() {
-        return dateOfPublished;
-    }
-
-    public void setDateOfPublished(LocalDateTime dateOfPublished) {
-        this.dateOfPublished = dateOfPublished;
-    }
-
     @Override
     public String toString() {
         return "Advertisement{" +
@@ -54,6 +46,19 @@ public class Advertisement {
 
     public int getIdAdvertisement() {
         return idAdvertisement;
+    }
+
+    public String getDateForView(){
+        return String.valueOf(dateOfPublished.getDayOfWeek()) +" " + dateOfPublished.getDayOfMonth()+ " " + dateOfPublished.getMonth();
+
+    }
+
+    public LocalDateTime getDateOfPublished() {
+        return dateOfPublished;
+    }
+
+    public void setDateOfPublished(LocalDateTime dateOfPublished) {
+        this.dateOfPublished = dateOfPublished;
     }
 
     public void setIdAdvertisement(int idAdvertisement) {

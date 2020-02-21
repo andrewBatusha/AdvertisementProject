@@ -17,9 +17,11 @@
             <a class="navbar-brand" href="#"> Welcome ${sessionScope.user} </a>
         </div>
         <ul class="nav navbar-nav" style="display: inline-block;" >
-            <li class="active"><a href="${pageContext.request.contextPath}/advertisement">Home</a></li>
+            <li><a href="${pageContext.request.contextPath}/advertisement">Home</a></li>
+            <c:if test="${!empty sessionScope.user}">
             <li><a href="${pageContext.request.contextPath}/myAdvertisement">My advertisement</a></li>
-            <li><a href="#">page 2</a></li>
+            <li><a href="${pageContext.request.contextPath}/manageServlet"> Management </a></li>
+            </c:if>
         </ul>
         <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
             <li><a href="${pageContext.request.contextPath}/registerPage"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

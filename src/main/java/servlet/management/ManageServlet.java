@@ -1,4 +1,4 @@
-package servlet;
+package servlet.management;
 
 import DAO.impl.AdvertisementJdbcDao;
 import DAO.impl.DBWorkConnector;
@@ -11,22 +11,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/advertisement")
-public class Advertisements extends HttpServlet {
+@WebServlet(urlPatterns = "/manageServlet")
+public class ManageServlet extends HttpServlet {
     AdvertisementService advertisementService = new AdvertisementService(new AdvertisementJdbcDao(new DBWorkConnector()));
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getParameter("denied") != null){
+            request.getRequestDispatcher("view/advertisements/advertisement.jsp").forward(request, response);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            List<Advertisement> advertisements = advertisementService.getAllAdvertisements();
-            request.setAttribute("advertisements", advertisements);
-            List<String> date = new ArrayList<>();
-            advertisements.forEach(x -> date.add(x.getDateForView()));
-            request.setAttribute("dateOfPublishing", date);
-            request.getRequestDispatcher("view/advertisements/advertisement.jsp").forward(request,response);
+        List<Advertisement> advertisements = advertisementService.getAllAdvertisements();
+        request.setAttribute("advertisements", advertisements);
+        List<String> date = new ArrayList<>();
+        advertisements.forEach(x -> date.add(x.getDateForView()));
+        request.setAttribute("dateOfPublishing", date);
+        request.getRequestDispatcher("view/manageAdvertisement/manage.jsp").forward(request, response);
     }
 }
