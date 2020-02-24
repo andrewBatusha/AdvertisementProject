@@ -32,7 +32,7 @@ public class CreateAdvServlet extends HttpServlet {
         adv.setTheme(Theme.valueOf(request.getParameter("statusList")));
         adv.setNumber(request.getParameter("phone"));
         adv.setDateOfPublished(LocalDateTime.now());
-        adv.setIdUser(userService.getUserByEmail((String) session.getAttribute("user")).getId());
+        adv.setIdUser(userService.getUserByEmail((String) session.getAttribute("email")).getId());
         advertisementService.addAdvertisement(adv);
         response.sendRedirect("/advertisement");
     }

@@ -23,7 +23,7 @@ public class MyAdvertisement extends HttpServlet {
         List<Advertisement> advertisements = null;
         HttpSession session = request.getSession();
         try {
-            advertisements = userService.getMyAdvertisement(userService.getUserByEmail((String)session.getAttribute("user")));
+            advertisements = userService.getMyAdvertisement(userService.getUserByEmail((String)session.getAttribute("email")));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -34,8 +34,9 @@ public class MyAdvertisement extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Advertisement> advertisements = null;
+        HttpSession session = request.getSession();
         try {
-           advertisements = userService.getMyAdvertisement(userService.getUserByEmail(request.getParameter("user")));
+           advertisements = userService.getMyAdvertisement(userService.getUserByEmail((String)session.getAttribute("email")));
         } catch (SQLException e) {
             e.printStackTrace();
         }

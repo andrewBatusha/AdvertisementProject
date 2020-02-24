@@ -2,6 +2,7 @@ package servlet.authorization;
 
 import DAO.impl.DBWorkConnector;
 import DAO.impl.UserJdbcDao;
+import model.User;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -22,7 +23,10 @@ public class LoginServlet extends HttpServlet {
         boolean validCredential = userService.isUserAuthorized(user, pwd);
         session.setAttribute("invalidCredential", !validCredential);
         if(validCredential){
-            session.setAttribute("user", user);
+            User authorizedUser = userService.getUserByEmail(user);
+            session.setAttribute("user", authorizedUser.getName() + " " + authorizedUser.getSurname());
+            session.setAttribute("role", authorizedUser.getRole());
+            session.setAttribute("email", authorizedUser.getEmail());
             //setting session to expiry in 30 mins
             session.setMaxInactiveInterval(30*60);
             Cookie userName = new Cookie("user", user);

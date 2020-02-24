@@ -38,7 +38,7 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
 
     private static final String UPDATE = "UPDATE advertisement " +
             "SET headline = ? , description = ? , " +
-            " theme = ?, phonenumber = ?, status = ?, id_user = ?, date_published WHERE id = ?;";
+            " theme = ?, phonenumber = ?, status = ?, id_user = ?, date_published = ? WHERE id = ?;";
 
     private static final String DELETE = "DELETE FROM advertisement " +
             "WHERE id = ?;";
@@ -150,10 +150,11 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             preparedStatement.setString(1, entity.getHeadline());
             preparedStatement.setString(2, entity.getDescription());
             preparedStatement.setString(3, String.valueOf(entity.getTheme()));
-            preparedStatement.setString(5, entity.getNumber());
-            preparedStatement.setString(6, String.valueOf(entity.getStatus()));
-            preparedStatement.setInt(7, entity.getIdUser());
-            preparedStatement.setDate(8, java.sql.Date.valueOf(entity.getDateOfPublished().toLocalDate()));
+            preparedStatement.setString(4, entity.getNumber());
+            preparedStatement.setString(5, String.valueOf(entity.getStatus()));
+            preparedStatement.setInt(6, entity.getIdUser());
+            preparedStatement.setDate(7, java.sql.Date.valueOf(entity.getDateOfPublished().toLocalDate()));
+            preparedStatement.setInt(8, entity.getIdAdvertisement());
             return dbConnector.protectedQuery(preparedStatement);
         }
     }

@@ -12,7 +12,7 @@ public class User {
     private String surname;
     private String email;
     private String password;
-    private Role role;
+    private Role role = Role.USER;
 
     public User() {
     }

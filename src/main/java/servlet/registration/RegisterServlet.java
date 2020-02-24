@@ -37,6 +37,7 @@ public class RegisterServlet extends HttpServlet {
                 e.printStackTrace();
             }
             session.setAttribute("user", user.getName());
+            session.setAttribute("email", user.getEmail());
             //setting session to expiry in 30 mins
             session.setMaxInactiveInterval(30*60);
             Cookie userName = new Cookie("user", user.getName());

@@ -12,7 +12,7 @@ public class Advertisement {
     private String description;
     private String number;
     private Theme theme;
-    private Status status = Status.APPROVED;
+    private Status status = Status.WAITING;
     private int idUser;
     private LocalDateTime dateOfPublished;
 

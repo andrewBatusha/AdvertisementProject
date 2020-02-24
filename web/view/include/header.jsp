@@ -1,3 +1,4 @@
+<%@ page import="enums.Role" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -17,9 +18,12 @@
             <a class="navbar-brand" href="#"> Welcome ${sessionScope.user} </a>
         </div>
         <ul class="nav navbar-nav" style="display: inline-block;" >
+            <c:set var="Manager" value="<%=Role.MANAGER%>"/>
             <li><a href="${pageContext.request.contextPath}/advertisement">Home</a></li>
             <c:if test="${!empty sessionScope.user}">
             <li><a href="${pageContext.request.contextPath}/myAdvertisement">My advertisement</a></li>
+            </c:if>
+            <c:if test="${sessionScope.role == Manager}">
             <li><a href="${pageContext.request.contextPath}/manageServlet"> Management </a></li>
             </c:if>
         </ul>
