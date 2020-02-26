@@ -29,6 +29,16 @@ public class UserService {
         return user;
     }
 
+    public int getUserIdByAdv(Advertisement adv) {
+        int id = 0;
+        try {
+            id = userJdbcDao.getUserByAdvertisement(adv);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
     public boolean addUser(User user) throws SQLException, IOException {
         userJdbcDao.insert(user);
         return true;
@@ -39,17 +49,51 @@ public class UserService {
         return true;
     }
 
-    public User getUser(int id) throws SQLException, IOException {
-        return userJdbcDao.selectByID(id);
+    public User getUser(int id) {
+        User user = null;
+        try {
+            user = userJdbcDao.selectByID(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return user;
+
     }
 
-    public List<User> getAllUsers() throws SQLException, IOException {
-        return userJdbcDao.selectAll();
+    public List<User> getAllUsers() {
+        List<User> list = null;
+        try {
+            list = userJdbcDao.selectAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
-    public boolean changeUserRole(User user, Role role) throws SQLException, IOException {
+    public boolean changeUserRole(User user, Role role) {
         user.setRole(role);
-        userJdbcDao.update(user);
+        try {
+            userJdbcDao.update(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+    public boolean changeUserBanStatus(User user, boolean banStatus) {
+        user.setBanStatus(banStatus);
+        try {
+            userJdbcDao.update(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return true;
     }
 
@@ -61,6 +105,15 @@ public class UserService {
         boolean f = false;
         try {
             f = userJdbcDao.isUserAuthorizedSuccessfully(email,password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
+    public boolean isUserBanned(String email){
+        boolean f = false;
+        try {
+            f = userJdbcDao.isUserBanned(email);
         } catch (SQLException e) {
             e.printStackTrace();
         }

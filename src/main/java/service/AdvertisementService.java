@@ -52,6 +52,8 @@ public class AdvertisementService {
         return true;
     }
 
+
+
     public List<Advertisement> getAllAdvertisements(){
         List<Advertisement> list = null;
         try {

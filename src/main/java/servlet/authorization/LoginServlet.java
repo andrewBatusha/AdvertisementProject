@@ -2,6 +2,7 @@ package servlet.authorization;
 
 import DAO.impl.DBWorkConnector;
 import DAO.impl.UserJdbcDao;
+import enums.Role;
 import model.User;
 import service.UserService;
 
@@ -21,8 +22,10 @@ public class LoginServlet extends HttpServlet {
         String user = request.getParameter("user");
         String pwd = request.getParameter("pwd");
         boolean validCredential = userService.isUserAuthorized(user, pwd);
+        boolean banStatus = userService.isUserBanned(user);
         session.setAttribute("invalidCredential", !validCredential);
-        if(validCredential){
+        session.setAttribute("banStatus", banStatus);
+        if(validCredential && !banStatus){
             User authorizedUser = userService.getUserByEmail(user);
             session.setAttribute("user", authorizedUser.getName() + " " + authorizedUser.getSurname());
             session.setAttribute("role", authorizedUser.getRole());
@@ -32,7 +35,13 @@ public class LoginServlet extends HttpServlet {
             Cookie userName = new Cookie("user", user);
             userName.setMaxAge(30*60);
             response.addCookie(userName);
-            request.getRequestDispatcher("/myAdvertisement").forward(request, response);
+            if (session.getAttribute("role") == Role.USER) {
+                response.sendRedirect("/myAdvertisement");
+            } else if(session.getAttribute("role") == Role.MANAGER){
+                response.sendRedirect("/manageServlet");
+            } else if(session.getAttribute("role") == Role.ADMIN){
+                response.sendRedirect("/adminServlet");
+            }
         }else{
             request.getRequestDispatcher("view/authorization/login.jsp").forward(request, response);
         }

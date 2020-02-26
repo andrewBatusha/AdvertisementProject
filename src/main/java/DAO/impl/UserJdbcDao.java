@@ -32,14 +32,15 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             "lastname VARCHAR (30)," +
             "email VARCHAR (30)," +
             "password VARCHAR (30)," +
-            "role VARCHAR (30);)";
+            "role VARCHAR (30)," +
+            "banstatus Int;)";
 
-    private static final String INSERT = "INSERT INTO users(firstname, lastname, email, password, role) " +
-            "VALUES ( ? , ? , ?, ?, ? );";
+    private static final String INSERT = "INSERT INTO users(firstname, lastname, email, password, role, banstatus) " +
+            "VALUES ( ? , ? , ?, ?, ?, ?);";
 
     private static final String UPDATE = "UPDATE users " +
             "SET firstname = ? , lastname = ? , " +
-            " email = ?, password = ?, role = ? WHERE id = ?;";
+            " email = ?, password = ?, role = ?, banstatus = ? WHERE id = ?;";
 
     private static final String DELETE = "DELETE FROM users " +
             "WHERE id = ?;";
@@ -50,14 +51,18 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     private static final String SELECT_IF_USER_EXIST = "SELECT COUNT(*) FROM users WHERE email = ?";
 
+    private static final String SELECT_IF_USER_Banned = "SELECT banstatus FROM users WHERE email = ?";
+
+    private static final String SELECT_User_ID_BY_ADVETISEMENT = "SELECT id_user FROM advertisement WHERE id = ?";
+
     private static final String SELECT_ALL_USERS_ADVERTISEMENT = "SELECT  Advertisement.id, headline, description, theme, phonenumber, status, id_user" +
             " FROM Advertisement " +
             "Where id_user = ?;";
 
 
-    private static final String SELECT_USER_BY_ID = "SELECT firstname,lastname, email, password, role FROM users WHERE id = ? ";
+    private static final String SELECT_USER_BY_ID = "SELECT firstname,lastname, email, password, role, banstatus FROM users WHERE id = ? ";
 
-    private static final String SELECT_USER_BY_EMAIL = "SELECT id, firstname,lastname, password, role FROM users WHERE email = ?";
+    private static final String SELECT_USER_BY_EMAIL = "SELECT id, firstname,lastname, password, role, banstatus FROM users WHERE email = ?";
     public boolean createUsersTable() throws IOException {
         return dbConnector.query(CREATE_TABLE);
     }
@@ -79,6 +84,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));
             user.setRole(Role.valueOf(rs.getString("role")));
+            user.setBanStatus(rs.getInt("banstatus") > 0);
             users.add(user);
         }
         return users;
@@ -98,6 +104,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));
             user.setRole(Role.valueOf(rs.getString("role")));
+            user.setBanStatus(rs.getInt("banstatus") > 0);
         }
         return user;
     }
@@ -115,6 +122,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             user.setSurname(rs.getString("lastname"));
             user.setPassword(rs.getString("password"));
             user.setRole(Role.valueOf(rs.getString("role")));
+            user.setBanStatus(rs.getInt("banstatus") > 0);
         }
         return user;
     }
@@ -127,6 +135,24 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
         ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
         rs.next();
         return rs.getInt(1) != 0;
+    }
+
+    @Override
+    public boolean isUserBanned(String email) throws SQLException {
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_IF_USER_Banned);
+        preparedStatement.setString(1, email);
+        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
+        rs.next();
+        return rs.getInt("banstatus") > 0;
+    }
+
+    @Override
+    public int getUserByAdvertisement(Advertisement adv) throws SQLException {
+        PreparedStatement preparedStatement = dbConnector.connect().prepareStatement(SELECT_User_ID_BY_ADVETISEMENT);
+        preparedStatement.setInt(1, adv.getIdAdvertisement());
+        ResultSet rs = dbConnector.databaseProtectedSelect(preparedStatement);
+        rs.next();
+        return rs.getInt("id_user");
     }
 
     @Override
@@ -147,6 +173,7 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, String.valueOf(user.getRole()));
+            preparedStatement.setInt(6, user.isBanStatus() ? 1 : 0);
             return dbConnector.protectedQuery(preparedStatement);
         }
     }
@@ -159,7 +186,8 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, String.valueOf(user.getRole()));
-            preparedStatement.setInt(6, user.getId());
+            preparedStatement.setInt(6, user.isBanStatus() ? 1 : 0);
+            preparedStatement.setInt(7, user.getId());
             return dbConnector.protectedQuery(preparedStatement);
         }
     }

@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
             <label for="phone">Phone:</label>
-            <input class="form-control" type="tel"  id="phone">
+            <input class="form-control" id="phone" type="tel"  name="phone">
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>

@@ -34,6 +34,9 @@
         <c:if test="${invalidCredential}">
             <div class="text-danger">Either user name or password is wrong.</div>
         </c:if>
+        <c:if test="${banStatus}">
+            <div class="text-danger">Your account was banned.</div>
+        </c:if>
     </form>
 </div>
 </body>

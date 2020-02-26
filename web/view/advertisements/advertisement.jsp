@@ -1,4 +1,5 @@
 <%@ page import="enums.Status" %>
+<%@ page import="enums.Role" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -16,6 +17,7 @@
 <div class="jumbotron d-flex align-items-center ">
     <div class="container-fluid">
         <c:set var="Approved" value="<%=Status.APPROVED%>"/>
+        <c:set var="User" value="<%=Role.USER%>"/>
         <c:forEach var="adv" items="${advertisements}" varStatus="loop" >
             <c:if test="${adv.status == Approved}">
                 <div class="card text-white bg-primary mb-3" style="max-width: 40rem;">
@@ -29,9 +31,8 @@
             </c:if>
         </c:forEach>
     </div>
-    <c:if test="${!empty sessionScope.user}">
-    <button type="button" class="btn btn-success btn-lg pull-right"><a href="${pageContext.request.contextPath}/CreatingPage"><span
-            class="fas fa-clipboard-list"></span> add Advertisement</a></button>
+    <c:if test="${sessionScope.role == User}">
+    <button type="button" class="btn btn-success btn-lg pull-right"><a href="${pageContext.request.contextPath}/CreatingPage"> add Advertisement</a></button>
     </c:if>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

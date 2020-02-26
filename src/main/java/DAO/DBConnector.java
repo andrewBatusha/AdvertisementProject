@@ -7,7 +7,7 @@ import java.util.PropertyResourceBundle;
 
 import static java.util.ResourceBundle.getBundle;
 
-public class DBConnector {
+public abstract class DBConnector {
     public DBConnector(String name) {
         this.name = name;
     }
