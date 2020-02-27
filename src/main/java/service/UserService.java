@@ -4,11 +4,13 @@ import DAO.IUserDao;
 import enums.Role;
 import model.Advertisement;
 import model.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 public class UserService {
     private IUserDao<User, Advertisement> userJdbcDao;
@@ -39,8 +41,15 @@ public class UserService {
         return id;
     }
 
-    public boolean addUser(User user) throws SQLException, IOException {
-        userJdbcDao.insert(user);
+    public boolean addUser(User user) {
+        user.setPassword(hashPassword(user.getPassword()));
+        try {
+            userJdbcDao.insert(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return true;
     }
 
@@ -59,7 +68,6 @@ public class UserService {
             e.printStackTrace();
         }
         return user;
-
     }
 
     public List<User> getAllUsers() {
@@ -85,8 +93,21 @@ public class UserService {
         }
         return true;
     }
+
     public boolean changeUserBanStatus(User user, boolean banStatus) {
         user.setBanStatus(banStatus);
+        try {
+            userJdbcDao.update(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public boolean changeUserActivatedStatus(User user, boolean activatedStatus) {
+        user.setActivated(activatedStatus);
         try {
             userJdbcDao.update(user);
         } catch (SQLException e) {
@@ -101,16 +122,17 @@ public class UserService {
         return userJdbcDao.selectAllAdvertisementByUserId(user.getId());
     }
 
-    public boolean isUserAuthorized(String email, String password){
+    public boolean isUserAuthorized(String email, String password) {
         boolean f = false;
         try {
-            f = userJdbcDao.isUserAuthorizedSuccessfully(email,password);
+            f = userJdbcDao.isUserAuthorizedSuccessfully(email, hashPassword(password));
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return f;
     }
-    public boolean isUserBanned(String email){
+
+    public boolean isUserBanned(String email) {
         boolean f = false;
         try {
             f = userJdbcDao.isUserBanned(email);
@@ -119,7 +141,28 @@ public class UserService {
         }
         return f;
     }
-    public boolean isUserExist(String email){
+
+    public boolean isUserRegistratedCorrectly(int id, String token) {
+        boolean f = false;
+        try {
+            f = userJdbcDao.isUserRegistratedCorrectly(id, token);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
+
+    public boolean isUserActivated(String email) {
+        boolean f = false;
+        try {
+            f = userJdbcDao.isUserActivated(email);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
+
+    public boolean isUserExist(String email) {
         boolean f = false;
         try {
             f = userJdbcDao.isUserExistInDatabase(email);
@@ -129,5 +172,9 @@ public class UserService {
             e.printStackTrace();
         }
         return f;
+    }
+
+    private String hashPassword(String plainTextPassword) {
+        return Base64.getEncoder().encodeToString(plainTextPassword.getBytes());
     }
 }

@@ -2,6 +2,7 @@ package servlet.registration;
 
 import DAO.impl.DBWorkConnector;
 import DAO.impl.UserJdbcDao;
+import email.TLSEmail;
 import model.User;
 import service.UserService;
 
@@ -9,7 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.UUID;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -19,33 +20,30 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String token = UUID.randomUUID().toString().replaceAll("-", "");
         // get request parameters for userID and password
         User user = new User();
         user.setName(request.getParameter("name"));
         user.setSurname(request.getParameter("surname"));
-        user.setEmail(request.getParameter("email"));
+        user.setEmail(request.getParameter("email").toLowerCase());
         user.setPassword(request.getParameter("password"));
+        user.setToken(token);
         String confirmPassword = request.getParameter("confirmPassword");
         boolean validCredential = !userService.isUserExist(user.getEmail());
         boolean confirmedPassword = user.getPassword().equals(confirmPassword);
         session.setAttribute("invalidCredential", !validCredential);
         session.setAttribute("unconfirmedPassword", !confirmedPassword);
-        if(validCredential & confirmedPassword){
-            try {
-                userService.addUser(user);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            session.setAttribute("user", user.getName());
-            session.setAttribute("email", user.getEmail());
-            session.setAttribute("role", user.getRole());
+        if (validCredential && confirmedPassword) {
+            userService.addUser(user);
+//            session.setAttribute("user", user.getName());
+//            session.setAttribute("email", user.getEmail());
+//            session.setAttribute("role", user.getRole());
+            String uri = "http://localhost:8081/ConfirmedPage?userID=" + userService.getUserByEmail(user.getEmail()).getId() +"&token=" + token;
+            TLSEmail.sendMessage(user.getEmail(), "registration" , "activate this token:" + uri);
             //setting session to expiry in 30 mins
-            session.setMaxInactiveInterval(30*60);
-            Cookie userName = new Cookie("user", user.getName());
-            userName.setMaxAge(30*60);
-            response.addCookie(userName);
+            session.setMaxInactiveInterval(30 * 60);
             response.sendRedirect("/advertisement");
-        }else{
+        } else {
             request.getRequestDispatcher("view/registration/register.jsp").forward(request, response);
         }
     }

@@ -37,6 +37,9 @@
         <c:if test="${banStatus}">
             <div class="text-danger">Your account was banned.</div>
         </c:if>
+        <c:if test="${activatedStatus}">
+            <div class="text-danger">Your account wasn't activated.</div>
+        </c:if>
     </form>
 </div>
 </body>

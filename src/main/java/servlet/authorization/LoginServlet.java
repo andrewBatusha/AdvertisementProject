@@ -23,9 +23,11 @@ public class LoginServlet extends HttpServlet {
         String pwd = request.getParameter("pwd");
         boolean validCredential = userService.isUserAuthorized(user, pwd);
         boolean banStatus = userService.isUserBanned(user);
+        boolean activated = userService.isUserActivated(user);
         session.setAttribute("invalidCredential", !validCredential);
         session.setAttribute("banStatus", banStatus);
-        if(validCredential && !banStatus){
+        session.setAttribute("activatedStatus", !activated);
+        if(validCredential && !banStatus && activated){
             User authorizedUser = userService.getUserByEmail(user);
             session.setAttribute("user", authorizedUser.getName() + " " + authorizedUser.getSurname());
             session.setAttribute("role", authorizedUser.getRole());

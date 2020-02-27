@@ -11,9 +11,11 @@ public class User {
     private String name;
     private String surname;
     private String email;
-    private String password;
+    private String password = "";
     private Role role = Role.USER;
     private boolean banStatus = false;
+    private String token;
+    private boolean activated = false;
 
     public User(int id, String name, String surname, String email, String password, Role role) {
         this.id = id;

@@ -15,4 +15,6 @@ public interface IUserDao<T, V> extends JdbcBaseDao<T> {
     boolean isUserAuthorizedSuccessfully(String email, String password) throws SQLException;
     boolean isUserBanned(String email) throws SQLException;
     int getUserByAdvertisement(Advertisement adv) throws SQLException;
+    boolean isUserActivated(String email) throws SQLException;
+    boolean isUserRegistratedCorrectly(int id, String token) throws SQLException;
 }
