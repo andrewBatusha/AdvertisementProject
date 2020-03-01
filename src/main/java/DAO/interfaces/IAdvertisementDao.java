@@ -1,6 +1,5 @@
-package DAO;
+package DAO.interfaces;
 
-import DAO.JdbcBaseDao;
 import enums.Theme;
 
 import java.io.IOException;

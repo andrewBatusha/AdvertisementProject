@@ -1,20 +1,19 @@
 package service;
 
-import DAO.IUserDao;
+import DAO.interfaces.IUserDao;
 import enums.Role;
 import model.Advertisement;
 import model.User;
-import org.mindrot.jbcrypt.BCrypt;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.List;
-import java.util.Optional;
 
 public class UserService {
     private IUserDao<User, Advertisement> userJdbcDao;
-
+    private final static Logger logger = Logger.getLogger(UserService.class);
     public UserService(IUserDao<User, Advertisement> userJdbcDao) {
         this.userJdbcDao = userJdbcDao;
     }
@@ -23,10 +22,8 @@ public class UserService {
         User user = null;
         try {
             user = userJdbcDao.selectByEmail(email);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return user;
     }
@@ -36,7 +33,7 @@ public class UserService {
         try {
             id = userJdbcDao.getUserByAdvertisement(adv);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Unexpected error", e);
         }
         return id;
     }
@@ -45,16 +42,18 @@ public class UserService {
         user.setPassword(hashPassword(user.getPassword()));
         try {
             userJdbcDao.insert(user);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return true;
     }
 
-    public boolean deleteUser(int id) throws SQLException, IOException {
-        userJdbcDao.deleteByID(id);
+    public boolean deleteUser(int id) {
+        try {
+            userJdbcDao.deleteByID(id);
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
+        }
         return true;
     }
 
@@ -62,10 +61,8 @@ public class UserService {
         User user = null;
         try {
             user = userJdbcDao.selectByID(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return user;
     }
@@ -74,10 +71,8 @@ public class UserService {
         List<User> list = null;
         try {
             list = userJdbcDao.selectAll();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return list;
     }
@@ -86,10 +81,8 @@ public class UserService {
         user.setRole(role);
         try {
             userJdbcDao.update(user);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return true;
     }
@@ -98,10 +91,8 @@ public class UserService {
         user.setBanStatus(banStatus);
         try {
             userJdbcDao.update(user);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return true;
     }
@@ -110,10 +101,8 @@ public class UserService {
         user.setActivated(activatedStatus);
         try {
             userJdbcDao.update(user);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return true;
     }
@@ -127,7 +116,7 @@ public class UserService {
         try {
             f = userJdbcDao.isUserAuthorizedSuccessfully(email, hashPassword(password));
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Unexpected error", e);
         }
         return f;
     }
@@ -137,7 +126,7 @@ public class UserService {
         try {
             f = userJdbcDao.isUserBanned(email);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Unexpected error", e);
         }
         return f;
     }
@@ -147,7 +136,7 @@ public class UserService {
         try {
             f = userJdbcDao.isUserRegistratedCorrectly(id, token);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Unexpected error", e);
         }
         return f;
     }
@@ -157,7 +146,7 @@ public class UserService {
         try {
             f = userJdbcDao.isUserActivated(email);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Unexpected error", e);
         }
         return f;
     }
@@ -166,10 +155,18 @@ public class UserService {
         boolean f = false;
         try {
             f = userJdbcDao.isUserExistInDatabase(email);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
+        }
+        return f;
+    }
+
+    public boolean createTable(){
+        boolean f = false;
+        try {
+            f = userJdbcDao.createTable();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Unexpected error", e);
         }
         return f;
     }

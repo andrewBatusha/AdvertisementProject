@@ -31,9 +31,6 @@
             </c:if>
         </c:forEach>
     </div>
-    <c:if test="${sessionScope.role == User}">
-    <button type="button" class="btn btn-success btn-lg pull-right"><a href="${pageContext.request.contextPath}/CreatingPage"> add Advertisement</a></button>
-    </c:if>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

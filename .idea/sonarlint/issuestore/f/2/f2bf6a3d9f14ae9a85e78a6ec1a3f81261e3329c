@@ -1,0 +1,9 @@
+
+Rsquid:UselessImportCheck"0Remove this unused import 'java.sql.Connection'.(¥ËôÖ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+Ysquid:S2147"DCombine this catch with the one at line 24, which has the same body.(ï­£Ä
+Ysquid:S2147"DCombine this catch with the one at line 73, which has the same body.(ï­£Ä

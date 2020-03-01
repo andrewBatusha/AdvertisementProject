@@ -1,6 +1,6 @@
 package DAO.impl;
 
-import DAO.DBConnector;
+import DAO.interfaces.DBConnector;
 
 public class DBWorkConnector extends DBConnector {
     public DBWorkConnector() {

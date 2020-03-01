@@ -17,13 +17,13 @@ public class Advertisement {
     private Theme theme;
     private Status status = Status.WAITING;
     private int idUser;
-    private LocalDateTime dateOfPublished;
+    private LocalDateTime publishedDate;
 
     public String getDateForView(){
-        return dateOfPublished.getDayOfWeek() +" " + dateOfPublished.getDayOfMonth()+ " " + dateOfPublished.getMonth();
+        return publishedDate.getDayOfWeek() +" " + publishedDate.getDayOfMonth()+ " " + publishedDate.getMonth();
 
     }
-    public Advertisement(int idAdvertisement, String headline, String description, String number, Theme theme, Status status, int idUser, LocalDateTime dateOfPublished) {
+    public Advertisement(int idAdvertisement, String headline, String description, String number, Theme theme, Status status, int idUser, LocalDateTime publishedDate) {
         this.idAdvertisement = idAdvertisement;
         this.headline = headline;
         this.description = description;
@@ -31,6 +31,6 @@ public class Advertisement {
         this.theme = theme;
         this.status = status;
         this.idUser = idUser;
-        this.dateOfPublished = dateOfPublished;
+        this.publishedDate = publishedDate;
     }
 }

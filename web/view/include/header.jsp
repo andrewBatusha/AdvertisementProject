@@ -24,6 +24,7 @@
             <li><a href="${pageContext.request.contextPath}/advertisement">Home</a></li>
             <c:if test="${sessionScope.role == User}">
                 <li><a href="${pageContext.request.contextPath}/myAdvertisement">My advertisement</a></li>
+                <li><a href="${pageContext.request.contextPath}/CreatingPage"> Add advertisement</a></li>
             </c:if>
             <c:if test="${sessionScope.role == Manager}">
                 <li><a href="${pageContext.request.contextPath}/manageServlet"> Management </a></li>

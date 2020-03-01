@@ -1,7 +1,7 @@
 package DAO.impl;
 
-import DAO.DBConnector;
-import DAO.IUserDao;
+import DAO.interfaces.DBConnector;
+import DAO.interfaces.IUserDao;
 import enums.Role;
 import enums.Status;
 import enums.Theme;
@@ -26,12 +26,14 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     private static final String CREATE_TABLE = "CREATE TABLE users " +
             "(id SERIAL PRIMARY KEY ," +
-            "firstname VARCHAR(20)," +
+            "firstname VARCHAR(30)," +
             "lastname VARCHAR (30)," +
-            "email VARCHAR (30)," +
+            "email VARCHAR (40)," +
             "password VARCHAR (30)," +
             "role VARCHAR (30)," +
-            "banstatus Int;)";
+            "banstatus Int," +
+            "activated Int, " +
+            "token VARCHAR(40));";
 
     private static final String INSERT = "INSERT INTO users(firstname, lastname, email, password, role, banstatus, token, activated) " +
             "VALUES ( ? , ? , ?, ?, ?, ?, ?, ?);";
@@ -66,7 +68,8 @@ public class UserJdbcDao implements IUserDao<User, Advertisement> {
 
     private static final String SELECT_USER_BY_EMAIL = "SELECT id, firstname,lastname, password, role, banstatus, token, activated FROM users WHERE email = ?";
 
-    public boolean createUsersTable() throws IOException {
+    @Override
+    public boolean createTable() throws IOException {
         return dbConnector.query(CREATE_TABLE);
     }
 

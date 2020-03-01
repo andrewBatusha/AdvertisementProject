@@ -1,6 +1,6 @@
 package service;
 
-import DAO.IAdvertisementDao;
+import DAO.interfaces.IAdvertisementDao;
 import enums.Status;
 import enums.Theme;
 import model.Advertisement;
@@ -21,10 +21,8 @@ public class AdvertisementService {
     public boolean addAdvertisement(Advertisement advertisement) {
         try {
             advertisementJdbcDao.insert(advertisement);
-        } catch (SQLException e) {
-            logger.error("addAdvertisement(Advertisement advertisement)" +e);
-        } catch (IOException e) {
-            logger.error("addAdvertisement(Advertisement advertisement)" +e);
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return true;
     }
@@ -32,10 +30,8 @@ public class AdvertisementService {
     public boolean deleteAdvertisement(int id) {
         try {
             advertisementJdbcDao.deleteByID(id);
-        } catch (SQLException e) {
-            logger.error("deleteAdvertisement(int id)" + e);
-        } catch (IOException e) {
-            logger.error("deleteAdvertisement(int id)" + e);
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return true;
     }
@@ -44,10 +40,8 @@ public class AdvertisementService {
         advertisement.setStatus(status);
         try {
             advertisementJdbcDao.update(advertisement);
-        } catch (SQLException e) {
-            logger.error("changeAdvertisementStatus(Advertisement advertisement, Status status)" + e);
-        } catch (IOException e) {
-            logger.error("changeAdvertisementStatus(Advertisement advertisement, Status status)" + e);
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return true;
     }
@@ -58,10 +52,8 @@ public class AdvertisementService {
         List<Advertisement> list = null;
         try {
             list = new ArrayList<>(advertisementJdbcDao.selectAll());
-        } catch (SQLException e) {
-            logger.error("getAllAdvertisements()" + e);
-        } catch (IOException e) {
-            logger.error("getAllAdvertisements()" + e);
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return list;
     }
@@ -70,10 +62,8 @@ public class AdvertisementService {
         Advertisement adv = null;
         try {
             adv = advertisementJdbcDao.selectByID(id);
-        } catch (SQLException e) {
-            logger.error("getAdvertisement()" + e);
-        } catch (IOException e) {
-            logger.error("getAdvertisement()" + e);
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return adv;
     }
@@ -82,11 +72,19 @@ public class AdvertisementService {
         List<Advertisement> list = null;
         try {
             list = new ArrayList<>(advertisementJdbcDao.selectAllByTheme(theme));
-        } catch (SQLException e) {
-            logger.error("getAdvertisementsByTheme()" + e);
-        } catch (IOException e) {
-            logger.error("getAdvertisementsByTheme()" + e);
+        } catch (SQLException | IOException e) {
+            logger.error("Unexpected error", e);
         }
         return  list;
+    }
+
+    public boolean createTable(){
+        boolean f = false;
+        try {
+            f = advertisementJdbcDao.createTable();
+        } catch (IOException e) {
+            logger.error("Unexpected error", e);
+        }
+        return f;
     }
 }

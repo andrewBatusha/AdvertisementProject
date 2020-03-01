@@ -1,0 +1,17 @@
+
+fsquid:S1192M"ODefine a constant instead of duplicating this literal "date_published" 3 times.(Â˜¨÷
+`squid:S1192G"IDefine a constant instead of duplicating this literal "headline" 3 times.(¸¸ì÷
+csquid:S1192H"LDefine a constant instead of duplicating this literal "description" 3 times.(¶ıÍ 
+hsquid:S1192J"LDefine a constant instead of duplicating this literal "phonenumber" 3 times.(öÅ·§şÿÿÿÿ
+_squid:S1192L"HDefine a constant instead of duplicating this literal "id_user" 3 times.(“®Õê
+]squid:S1192I"FDefine a constant instead of duplicating this literal "theme" 3 times.(“˜æ®
+^squid:S1192K"GDefine a constant instead of duplicating this literal "status" 3 times.(®”û§
+lsquid:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ª†­àşÿÿÿÿ
+ksquid:S2095U"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™ôûşÿÿÿÿ
+ksquid:S2095h"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‚ß¯”øÿÿÿÿ
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ç×–ı
+^squid:UselessImportCheck":Remove this unused import 'java.time.temporal.ChronoUnit'.(Á…§
+¢%squid:RedundantThrowsDeclarationCheck6"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(Æ“à­ıÿÿÿÿ
+œ%squid:RedundantThrowsDeclarationCheck:"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¸éÛe
+Lsquid:S2695œ"/This "PreparedStatement" only has 7 parameters.(ıÁ›Ÿúÿÿÿÿ
+]squid:S1068."ARemove this unused "SELECT_IF_ADVERTISEMENT_EXIST" private field.( ŒÜıÿÿÿÿ

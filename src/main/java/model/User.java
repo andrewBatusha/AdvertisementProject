@@ -1,11 +1,13 @@
 package model;
 
 import enums.Role;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
     private int id;
     private String name;
@@ -16,13 +18,4 @@ public class User {
     private boolean banStatus = false;
     private String token;
     private boolean activated = false;
-
-    public User(int id, String name, String surname, String email, String password, Role role) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
 }

@@ -1,4 +1,4 @@
-package DAO;
+package DAO.interfaces;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,6 +14,8 @@ public interface JdbcBaseDao<T> {
     T deleteByID(int id) throws SQLException, IOException;
 
     int update(T entity) throws SQLException, IOException;
+
+    public boolean createTable() throws IOException;
 
 //    boolean isEntityExistInDatabase(int id) throws SQLException, IOException;
 
