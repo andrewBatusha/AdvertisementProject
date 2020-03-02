@@ -1,6 +1,9 @@
 package email;
 
 
+import org.apache.log4j.Logger;
+import service.AdvertisementService;
+
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -9,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Date;
 
 public class EmailUtil {
-
+    final static Logger logger = Logger.getLogger(EmailUtil.class);
     /**
      * Utility method to send simple HTML email
      * @param session
@@ -37,13 +40,13 @@ public class EmailUtil {
             msg.setSentDate(new Date());
 
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-            System.out.println("Message is ready");
+            logger.info("Message is ready");
             Transport.send(msg);
 
-            System.out.println("EMail Sent Successfully!!");
+            logger.info("EMail Sent Successfully!!");
         }
         catch (Exception e) {
-            e.printStackTrace();
+            logger.error("email error", e);
         }
     }
 }

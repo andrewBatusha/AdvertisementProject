@@ -15,7 +15,10 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
+            <a class="navbar-brand" href="#"> AdvMe </a>
+            <c:if test="${!empty sessionScope.user}">
             <a class="navbar-brand" href="#"> Welcome ${sessionScope.user} </a>
+            </c:if>
         </div>
         <ul class="nav navbar-nav" style="display: inline-block;">
             <c:set var="Manager" value="<%=Role.MANAGER%>"/>

@@ -1,4 +1,5 @@
 package servlet.filter.RoleFilter;
+
 import enums.Role;
 
 import javax.servlet.*;

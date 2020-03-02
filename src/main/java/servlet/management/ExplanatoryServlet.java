@@ -20,6 +20,6 @@ public class ExplanatoryServlet extends HttpServlet {
         String details = request.getParameter("details");
         TLSEmail.sendMessage(email, reason , details);
         session.removeAttribute("email");
-        response.sendRedirect("/manageServlet");
+        response.sendRedirect(request.getContextPath() +"/manageServlet");
     }
 }

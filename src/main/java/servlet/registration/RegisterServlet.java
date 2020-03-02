@@ -35,14 +35,11 @@ public class RegisterServlet extends HttpServlet {
         session.setAttribute("unconfirmedPassword", !confirmedPassword);
         if (validCredential && confirmedPassword) {
             userService.addUser(user);
-//            session.setAttribute("user", user.getName());
-//            session.setAttribute("email", user.getEmail());
-//            session.setAttribute("role", user.getRole());
             String uri = "http://localhost:8081/ConfirmedPage?userID=" + userService.getUserByEmail(user.getEmail()).getId() +"&token=" + token;
-            TLSEmail.sendMessage(user.getEmail(), "registration" , "activate this token:" + uri);
+            TLSEmail.sendMessage(user.getEmail(), "Confirm registration in AdvMe" , "activate this token:" + uri);
             //setting session to expiry in 30 mins
             session.setMaxInactiveInterval(30 * 60);
-            response.sendRedirect("/advertisement");
+            response.sendRedirect(request.getContextPath() +"/advertisement");
         } else {
             request.getRequestDispatcher("view/registration/register.jsp").forward(request, response);
         }

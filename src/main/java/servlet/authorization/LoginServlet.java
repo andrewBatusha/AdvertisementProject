@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
                           HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         // get request parameters for userID and password
-        String user = request.getParameter("user");
+        String user = request.getParameter("user").toLowerCase();
         String pwd = request.getParameter("pwd");
         boolean validCredential = userService.isUserAuthorized(user, pwd);
         boolean banStatus = userService.isUserBanned(user);
@@ -38,11 +38,11 @@ public class LoginServlet extends HttpServlet {
             userName.setMaxAge(30*60);
             response.addCookie(userName);
             if (session.getAttribute("role") == Role.USER) {
-                response.sendRedirect("/myAdvertisement");
+                response.sendRedirect(request.getContextPath() +"/myAdvertisement");
             } else if(session.getAttribute("role") == Role.MANAGER){
-                response.sendRedirect("/manageServlet");
+                response.sendRedirect(request.getContextPath() +"/manageServlet");
             } else if(session.getAttribute("role") == Role.ADMIN){
-                response.sendRedirect("/adminServlet");
+                response.sendRedirect(request.getContextPath() +"/adminServlet");
             }
         }else{
             request.getRequestDispatcher("view/authorization/login.jsp").forward(request, response);

@@ -4,7 +4,7 @@
 //import model.User;
 //import org.junit.Assert;
 //import org.junit.Test;
-//import service.UserService;
+//import UserService;
 //
 //public class UserServiceTest {
 //    User user = new User(32, "andrew", "batuiev", "@gmail.com", "password", Role.ADMIN);

@@ -2,7 +2,6 @@ package servlet;
 
 import DAO.impl.DBWorkConnector;
 import DAO.impl.UserJdbcDao;
-import com.mysql.cj.Session;
 import model.Advertisement;
 import service.UserService;
 

@@ -9,12 +9,6 @@ W
 'src/main/java/DAO/impl/UserJdbcDao.java,e\f\efd915b985479da95dd3ebd0bf28705d2570afec
 R
 "src/main/java/servlet/MyUtils.java,d\1\d15958d44aca6be737321839e33d9966ba5ab783
-R
-"src/main/java/DAO/JdbcBaseDao.java,1\b\1b161a64fde0806a4d7c46d4a0d34c2a65365bab
-R
-"src/main/java/DAO/DBConnector.java,d\0\d0e617a7e23e91f1f9cf10d9731adce70e19f791
-\
-,src/main/java/servlet/filter/JDBCFilter.java,8\3\83690602b1e2b1cfc0dcd28771a771c977c38536
 Y
 )src/main/java/servlet/Advertisements.java,2\c\2c3fe6b19420d0fdafdf285e57da1e5c98cc60d4
 d

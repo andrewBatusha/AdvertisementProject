@@ -15,7 +15,7 @@
 <body>
 <jsp:include page="../include/header.jsp"></jsp:include>
 
-<div class="container" class="was-validated">
+<div class="container col-xs-3 col-xs-offset-4 was-validated">
     <h2>Login</h2>
     <form action="LoginServlet" method="post">
         <div class="form-group">
@@ -41,6 +41,7 @@
             <div class="text-danger">Your account wasn't activated.</div>
         </c:if>
     </form>
+    <div class="text-center">Still don't have an account? <a href="${pageContext.request.contextPath}/registerPage">Sign up</a></div>
 </div>
 </body>
 </html>

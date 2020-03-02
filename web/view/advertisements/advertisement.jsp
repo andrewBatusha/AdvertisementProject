@@ -14,19 +14,28 @@
 </head>
 <body>
 <jsp:include page="../include/header.jsp"></jsp:include>
-<div class="jumbotron d-flex align-items-center ">
+<div class="jumbotron d-flex align-items-center col-xs-offset-4">
     <div class="container-fluid">
         <c:set var="Approved" value="<%=Status.APPROVED%>"/>
         <c:set var="User" value="<%=Role.USER%>"/>
-        <c:forEach var="adv" items="${advertisements}" varStatus="loop" >
+        <c:forEach var="adv" items="${advertisements}" varStatus="loop">
             <c:if test="${adv.status == Approved}">
                 <div class="card text-white bg-primary mb-3" style="max-width: 40rem;">
-                    <div class="card-header"><c:out value="${adv.theme}"/><p></div>
+                    <div class="card-header"><c:out value="${adv.theme}"/></div>
                     <div class="card-body">
                         <h4 class="card-title"><c:out value="${adv.headline}"/></h4>
                         <p class="card-text"><c:out value="${adv.description}"/></p>
                     </div>
-                    <div class="card-footer"><c:out value="${dateOfPublishing.get(loop.index)}"/><p></div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <c:out value="${dateOfPublishing.get(loop.index)}"/>
+                            </div>
+                            <div class="col-md-6" >
+                                <div><c:out value="${adv.number}"/></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </c:if>
         </c:forEach>
