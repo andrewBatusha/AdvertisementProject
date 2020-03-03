@@ -34,6 +34,6 @@ public class CreateAdvServlet extends HttpServlet {
         adv.setPublishedDate(LocalDateTime.now());
         adv.setIdUser(userService.getUserByEmail((String) session.getAttribute("email")).getId());
         advertisementService.addAdvertisement(adv);
-        response.sendRedirect(request.getContextPath() +"/advertisement");
+        response.sendRedirect(request.getContextPath() + "/advertisement");
     }
 }

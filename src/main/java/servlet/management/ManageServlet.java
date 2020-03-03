@@ -32,7 +32,7 @@ public class ManageServlet extends HttpServlet {
             case "denied":
                 session.setAttribute("email", userService.getUser(userService.getUserIdByAdv(advertisement)).getEmail());
                 advertisementService.changeAdvertisementStatus(advertisement, Status.DENIED);
-                response.sendRedirect(request.getContextPath() +"/explanatoryPage");
+                response.sendRedirect(request.getContextPath() + "/explanatoryPage");
                 break;
             case "approved":
                 advertisementService.changeAdvertisementStatus(advertisement, Status.APPROVED);

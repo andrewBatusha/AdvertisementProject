@@ -1,5 +1,5 @@
-<%@ page import="enums.Status" %>
 <%@ page import="enums.Role" %>
+<%@ page import="enums.Status" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -31,7 +31,7 @@
                             <div class="col-md-6">
                                 <c:out value="${dateOfPublishing.get(loop.index)}"/>
                             </div>
-                            <div class="col-md-6" >
+                            <div class="col-md-6">
                                 <div><c:out value="${adv.number}"/></div>
                             </div>
                         </div>

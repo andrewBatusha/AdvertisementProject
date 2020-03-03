@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: abatuitc
-  Date: 26.02.2020
-  Time: 15:00
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -18,7 +11,8 @@
     <form action="explanatoryServlet" method="post">
         <div class="form-group">
             <label for="formGroupExampleInput"> Reason </label>
-            <input type="text" class="form-control" id="formGroupExampleInput" name="reason" placeholder="Example input">
+            <input type="text" class="form-control" id="formGroupExampleInput" name="reason"
+                   placeholder="Example input">
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1"> Details </label>

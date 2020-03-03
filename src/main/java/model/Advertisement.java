@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 public class Advertisement {
@@ -19,10 +20,11 @@ public class Advertisement {
     private int idUser;
     private LocalDateTime publishedDate;
 
-    public String getDateForView(){
-        return publishedDate.getDayOfWeek() +" " + publishedDate.getDayOfMonth()+ " " + publishedDate.getMonth();
+    public String getDateForView() {
+        return publishedDate.getDayOfWeek() + " " + publishedDate.getDayOfMonth() + " " + publishedDate.getMonth();
 
     }
+
     public Advertisement(int idAdvertisement, String headline, String description, String number, Theme theme, Status status, int idUser, LocalDateTime publishedDate) {
         this.idAdvertisement = idAdvertisement;
         this.headline = headline;

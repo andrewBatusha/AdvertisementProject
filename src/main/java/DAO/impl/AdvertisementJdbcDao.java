@@ -79,8 +79,8 @@ public class AdvertisementJdbcDao implements IAdvertisementDao<Advertisement> {
             advertisement.setIdUser(rs.getInt("id_user"));
             advertisement.setPublishedDate(rs.getTimestamp("date_published").toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
             advertisements.add(advertisement);
-         }
-       return advertisements;
+        }
+        return advertisements;
     }
 
     @Override

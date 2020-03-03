@@ -1,20 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: abatuitc
-  Date: 24.02.2020
-  Time: 13:58
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>404</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/errorStyle.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/errorStyle.css"/>
 </head>
 <body>
-<<div id="clouds">
+<div id="clouds">
     <div class="cloud x1"></div>
     <div class="cloud x1_5"></div>
     <div class="cloud x2"></div>

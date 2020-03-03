@@ -12,16 +12,17 @@ import java.util.Date;
 
 public class EmailUtil {
     final static Logger logger = Logger.getLogger(EmailUtil.class);
+
     /**
      * Utility method to send simple HTML email
+     *
      * @param session
      * @param toEmail
      * @param subject
      * @param body
      */
-    public static void sendEmail(Session session, String toEmail, String subject, String body){
-        try
-        {
+    public static void sendEmail(Session session, String toEmail, String subject, String body) {
+        try {
             MimeMessage msg = new MimeMessage(session);
             //set message headers
             msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
@@ -43,8 +44,7 @@ public class EmailUtil {
             Transport.send(msg);
 
             logger.info("EMail Sent Successfully!!");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("email error", e);
         }
     }

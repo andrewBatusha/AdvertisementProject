@@ -29,7 +29,7 @@ public class ConfirmedRegistration extends HttpServlet {
             session.setAttribute("role", authorizedUser.getRole());
             session.setAttribute("email", authorizedUser.getEmail());
         }
-        response.sendRedirect(request.getContextPath() +"/advertisement");
+        response.sendRedirect(request.getContextPath() + "/advertisement");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

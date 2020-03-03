@@ -27,13 +27,13 @@ public abstract class DBConnector {
             conn = DriverManager.getConnection(url, user, pass);
 
         } catch (SQLException | ClassNotFoundException ex) {
-            logger.error("cannot connected to bd",ex);
+            logger.error("cannot connected to bd", ex);
         }
         return conn;
     }
 
     //for creating and dropping tables
-    public boolean query(String SQLquery)  {
+    public boolean query(String SQLquery) {
         Connection connection = connect();
         boolean hasException = false;
         try (Statement stmt = connection.createStatement()) {
@@ -67,6 +67,7 @@ public abstract class DBConnector {
         } catch (Exception e) {
         }
     }
+
     public static void closeQuietly(Connection conn) {
         try {
             conn.close();

@@ -5,8 +5,6 @@ V
 &src/main/java/service/UserService.java,f\2\f2bf6a3d9f14ae9a85e78a6ec1a3f81261e3329c
 W
 'src/main/java/DAO/impl/UserJdbcDao.java,e\f\efd915b985479da95dd3ebd0bf28705d2570afec
-R
-"src/main/java/servlet/MyUtils.java,d\1\d15958d44aca6be737321839e33d9966ba5ab783
 Y
 )src/main/java/servlet/Advertisements.java,2\c\2c3fe6b19420d0fdafdf285e57da1e5c98cc60d4
 d

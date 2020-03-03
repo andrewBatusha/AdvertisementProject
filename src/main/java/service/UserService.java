@@ -14,6 +14,7 @@ import java.util.List;
 public class UserService {
     private IUserDao<User, Advertisement> userJdbcDao;
     private final static Logger logger = Logger.getLogger(UserService.class);
+
     public UserService(IUserDao<User, Advertisement> userJdbcDao) {
         this.userJdbcDao = userJdbcDao;
     }
@@ -161,7 +162,7 @@ public class UserService {
         return f;
     }
 
-    public boolean createTable(){
+    public boolean createTable() {
         boolean f = false;
         try {
             f = userJdbcDao.createTable();

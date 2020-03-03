@@ -20,7 +20,7 @@
     <form action="LoginServlet" method="post">
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="user" required >
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="user" required>
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">Please fill out this field.</div>
         </div>
@@ -41,7 +41,8 @@
             <div class="text-danger">Your account wasn't activated.</div>
         </c:if>
     </form>
-    <div class="text-center">Still don't have an account? <a href="${pageContext.request.contextPath}/registerPage">Sign up</a></div>
+    <div class="text-center">Still don't have an account? <a href="${pageContext.request.contextPath}/registerPage">Sign
+        up</a></div>
 </div>
 </body>
 </html>

@@ -13,13 +13,13 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/explanatoryServlet")
 public class ExplanatoryServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String email = session.getAttribute("email").toString();
         String reason = request.getParameter("reason");
         String details = request.getParameter("details");
-        TLSEmail.sendMessage(email, reason , details);
+        TLSEmail.sendMessage(email, reason, details);
         session.removeAttribute("email");
-        response.sendRedirect(request.getContextPath() +"/manageServlet");
+        response.sendRedirect(request.getContextPath() + "/manageServlet");
     }
 }

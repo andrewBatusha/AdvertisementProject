@@ -37,11 +37,14 @@
                             <td>
                                 <form action="adminServlet" method="post">
                                     <input type="hidden" name="id" value="${user.id}">
-                                    <c:if test = "${user.banStatus}">
-                                        <button type="submit" class="btn btn-primary" name="button" value="unban">Unban</button>
+                                    <c:if test="${user.banStatus}">
+                                        <button type="submit" class="btn btn-primary" name="button" value="unban">
+                                            Unban
+                                        </button>
                                     </c:if>
-                                    <c:if test = "${!user.banStatus}">
-                                        <button type="submit" class="btn btn-danger" name="button" value="ban">Ban</button>
+                                    <c:if test="${!user.banStatus}">
+                                        <button type="submit" class="btn btn-danger" name="button" value="ban">Ban
+                                        </button>
                                     </c:if>
                                     <button type="submit" class="btn btn-success" name="button" value="promote">Promote
                                     </button>
@@ -59,11 +62,14 @@
                             <td>
                                 <form action="adminServlet" method="post">
                                     <input type="hidden" name="id" value="${user.id}">
-                                    <c:if test = "${user.banStatus}">
-                                        <button type="submit" class="btn btn-primary" name="button" value="unban">Unban</button>
+                                    <c:if test="${user.banStatus}">
+                                        <button type="submit" class="btn btn-primary" name="button" value="unban">
+                                            Unban
+                                        </button>
                                     </c:if>
-                                    <c:if test = "${!user.banStatus}">
-                                        <button type="submit" class="btn btn-danger" name="button" value="ban">Ban</button>
+                                    <c:if test="${!user.banStatus}">
+                                        <button type="submit" class="btn btn-danger" name="button" value="ban">Ban
+                                        </button>
                                     </c:if>
                                     <button type="submit" class="btn btn-info" name="button" value="demote">Demote
                                     </button>

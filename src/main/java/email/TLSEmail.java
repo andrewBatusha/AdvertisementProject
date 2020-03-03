@@ -1,8 +1,5 @@
 package email;
 
-import org.apache.log4j.Logger;
-import service.AdvertisementService;
-
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
