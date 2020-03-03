@@ -2,7 +2,6 @@ package email;
 
 
 import org.apache.log4j.Logger;
-import service.AdvertisementService;
 
 import javax.mail.Message;
 import javax.mail.Session;

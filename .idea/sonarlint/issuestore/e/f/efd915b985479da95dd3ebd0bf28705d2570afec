@@ -1,5 +1,22 @@
 
-csquid:S1192"IDefine a constant instead of duplicating this literal "password" 3 times.(Ú½€öüÿÿÿÿ
-csquid:S1192"IDefine a constant instead of duplicating this literal "lastname" 3 times.(´·èüÿÿÿÿ
-dsquid:S1192"JDefine a constant instead of duplicating this literal "firstname" 3 times.(†Å­ºşÿÿÿÿ
-psquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ç×–ı
+esquid:S1192["IDefine a constant instead of duplicating this literal "password" 3 times.(Ú½€öüÿÿÿÿ
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ç×–ı
+fsquid:S1192X"JDefine a constant instead of duplicating this literal "firstname" 3 times.(†Å­ºşÿÿÿÿ
+esquid:S1192Y"IDefine a constant instead of duplicating this literal "lastname" 3 times.(´·èüÿÿÿÿ
+hsquid:S1192_"JDefine a constant instead of duplicating this literal "activated" 4 times.(ÊªçÊ8ÛùÒß‰.
+hsquid:S1192]"JDefine a constant instead of duplicating this literal "banstatus" 4 times.(ÑßğÓ8ÛùÒß‰.
+dsquid:S1192^"FDefine a constant instead of duplicating this literal "token" 3 times.(Ú“¡Ö8ÛùÒß‰.
+nsquid:S2095š"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Âî•Œ8ÛùÒß‰.
+nsquid:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ö¤¨Â8ÛùÒß‰.
+nsquid:S2095¶"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¶£¹Ê8ÛùÒß‰.
+msquid:S2095h"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÁœÈü8ÛùÒß‰.
+ssquid:S2095¿"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™ÑŠûÿÿÿÿ8ÛùÒß‰.
+rsquid:S2095|"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æ¯™íûÿÿÿÿ8ÛùÒß‰.
+ssquid:S2095é"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ª†­àşÿÿÿÿ8ÛùÒß‰.
+nsquid:S2095ñ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(âÍÖ…8ÛùÒß‰.
+ssquid:S2095£"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÌäùÜüÿÿÿÿ8ÛùÒß‰.
+nsquid:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(·¨¬8ÛùÒß‰.
+xsquid:S001158"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(–Â“8ÛùÒß‰.
+ysquid:S00115:"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(°¡à•8ÛùÒß‰.
+ysquid:S00115<"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÀÉ’‡8ÛùÒß‰.
+¤%squid:RedundantThrowsDeclarationCheckL"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(—µú¶8ÛùÒß‰.

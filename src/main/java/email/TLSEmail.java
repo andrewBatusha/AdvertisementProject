@@ -9,7 +9,6 @@ import javax.mail.Session;
 import java.util.Properties;
 
 public class TLSEmail {
-    final static Logger logger = Logger.getLogger(AdvertisementService.class);
     /**
      * Outgoing Mail (SMTP) Server
      * requires TLS or SSL: smtp.gmail.com (use authentication)

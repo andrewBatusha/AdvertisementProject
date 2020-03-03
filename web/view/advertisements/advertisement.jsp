@@ -14,7 +14,7 @@
 </head>
 <body>
 <jsp:include page="../include/header.jsp"></jsp:include>
-<div class="jumbotron d-flex align-items-center col-xs-offset-4">
+<div class="jumbotron d-flex align-items-center col-xs-offset-4" style="background-color: #FFFFFF;">
     <div class="container-fluid">
         <c:set var="Approved" value="<%=Status.APPROVED%>"/>
         <c:set var="User" value="<%=Role.USER%>"/>

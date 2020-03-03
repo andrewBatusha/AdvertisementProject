@@ -1,7 +1,0 @@
-
-isquid:S1192"ODefine a constant instead of duplicating this literal "COOKIE_CHECKED" 3 times.(ë¬µÓýÿÿÿÿ
-fsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñéÈ4
-Tsquid:UselessImportCheck"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ
-›squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(àä™´ýÿÿÿÿ
-–squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‚“¶î
-›squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ó£Ûœûÿÿÿÿ
