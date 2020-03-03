@@ -4,6 +4,6 @@
     <title>$Title$</title>
 </head>
 <body>
-wow
+
 </body>
 </html>
