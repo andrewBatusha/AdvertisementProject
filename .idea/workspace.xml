@@ -8,43 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7684f616-42ca-4611-9910-4aac13aa0990" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/impl/AdvertisementJdbcDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/impl/AdvertisementJdbcDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/interfaces/DBConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/interfaces/DBConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/interfaces/IUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/interfaces/IUserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DAO/interfaces/JdbcBaseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DAO/interfaces/JdbcBaseDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SetUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SetUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/email/EmailUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/email/EmailUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/email/TLSEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/email/TLSEmail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Advertisement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Advertisement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/AdvertisementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/AdvertisementService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/Advertisements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/Advertisements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/CreateAdvertisetisement/CreateAdvServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/CreateAdvertisetisement/CreateAdvServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/MyAdvertisement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/MyAdvertisement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/MyUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/authorization/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/authorization/LoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/authorization/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/authorization/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/filter/RoleFilter/UserRoleFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/filter/RoleFilter/UserRoleFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/filter/authorization/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/filter/authorization/AuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/filter/authorization/RequestLoggingFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/filter/authorization/RequestLoggingFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/management/ExplanatoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/management/ExplanatoryServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/management/ManageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/management/ManageServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/registration/ConfirmedRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/registration/ConfirmedRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/registration/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/registration/RegisterServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/errorStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/errorStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/registerPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/registerPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/vertical-center.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/vertical-center.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/view/administration/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/view/administration/admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/view/advertisements/advertisement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/view/advertisements/advertisement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/view/authorization/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/view/authorization/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/view/createAdvertisement/createAdv.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/view/createAdvertisement/createAdv.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/view/include/errorPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/view/include/errorPage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/view/include/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/view/include/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/view/manageAdvertisement/explanatory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/view/manageAdvertisement/explanatory.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/view/registration/confirmed.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/view/registration/confirmed.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/view/registration/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/view/registration/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBdump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DBdump.sql" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,13 +41,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SetUp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2380">
-              <caret line="140" column="32" lean-forward="true" selection-start-line="140" selection-start-column="32" selection-end-line="140" selection-end-column="32" />
+            <state relative-caret-position="187">
+              <caret line="110" column="35" lean-forward="true" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <element signature="e#64#65#0" expanded="true" />
+                <element signature="e#105#106#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -194,6 +171,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -231,7 +209,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -421,6 +398,7 @@
       <workItem from="1583070821380" duration="11647000" />
       <workItem from="1583151266294" duration="12428000" />
       <workItem from="1583237404425" duration="7337000" />
+      <workItem from="1583248241022" duration="875000" />
     </task>
     <task id="LOCAL-00001" summary="-add servlet">
       <created>1581938728342</created>
@@ -499,11 +477,18 @@
       <option name="project" value="LOCAL" />
       <updated>1583243544823</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="- production">
+      <created>1583248525150</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1583248525150</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19765000" />
+    <option name="totallyTimeSpent" value="20640000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -515,10 +500,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.34701493" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15351813" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -528,7 +512,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.16576381" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.14951245" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.39869988" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.26218852" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -600,7 +584,8 @@
     <MESSAGE value="- add manager functionality" />
     <MESSAGE value="- add email response functionality" />
     <MESSAGE value="- fix bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="- fix bugs" />
+    <MESSAGE value="- production" />
+    <option name="LAST_COMMIT_MESSAGE" value="- production" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -796,22 +781,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/servlet/MyUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/servlet/MyUtils.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/servlet/MyAdvertisement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="33" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DBdump.sql">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -888,24 +864,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/IService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
-          <folding>
-            <element signature="e#64#65#0" expanded="true" />
-            <element signature="e#105#106#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/IService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/DAO/impl/AdvertisementJdbcDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1402">
@@ -965,12 +924,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DBdump.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="199" lean-forward="true" selection-start-line="199" selection-end-line="199" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SetUp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2380">
-          <caret line="140" column="32" lean-forward="true" selection-start-line="140" selection-start-column="32" selection-end-line="140" selection-end-column="32" />
+        <state relative-caret-position="187">
+          <caret line="110" column="35" lean-forward="true" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#64#65#0" expanded="true" />
+            <element signature="e#105#106#0" expanded="true" />
           </folding>
         </state>
       </provider>
