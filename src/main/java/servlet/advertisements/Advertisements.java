@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/advertisement")
+@WebServlet(urlPatterns = {"/", "/advertisement"})
 public class Advertisements extends HttpServlet {
     AdvertisementService advertisementService = new AdvertisementService(new AdvertisementJdbcDao(new DBWorkConnector()));
 
