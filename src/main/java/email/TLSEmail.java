@@ -16,7 +16,6 @@ public class TLSEmail {
         final String fromEmail = "ema1ls9nd9r@gmail.com";
         //requires valid gmail id
         final String password = "12345root"; // correct password for gmail id
-        final String toEmail = userEmail; // can be any email id
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
@@ -35,6 +34,6 @@ public class TLSEmail {
         };
         Session session = Session.getInstance(props, auth);
 
-        EmailUtil.sendEmail(session, toEmail, title, message);
+        EmailUtil.sendEmail(session, userEmail, title, message);
     }
 }

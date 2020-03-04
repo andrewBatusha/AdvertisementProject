@@ -12,7 +12,7 @@
     <form action="CreateServlet" method="post">
         <div class="form-group">
             <label for="headline">Headline:</label>
-            <input type="text" class="form-control" id="headline" name="headline">
+            <input type="text" class="form-control" id="headline" name="headline" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="comment">Description:</label>

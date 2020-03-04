@@ -1,4 +1,4 @@
-package servlet;
+package servlet.advertisements;
 
 import DAO.impl.DBWorkConnector;
 import DAO.impl.UserJdbcDao;
